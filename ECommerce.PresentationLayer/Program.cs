@@ -1,8 +1,18 @@
+using ECommerce.DataAccessLayer.Concrete;
+using ECommerce.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddIdentity<AppUser, AppRole>()
+	.AddEntityFrameworkStores<Context>()
+	.AddDefaultTokenProviders();
+builder.Services.AddScoped<UserManager<AppUser>>();
+builder.Services.AddScoped<SignInManager<AppUser>>();
+builder.Services.AddDbContext<Context>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -17,6 +27,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
