@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using ECommerce.DtoLayer.Dtos.AccountDto;
 using ECommerce.EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.PresentationLayer.Controllers
@@ -52,6 +54,11 @@ namespace ECommerce.PresentationLayer.Controllers
 			{
 				return RedirectToAction("Index", "Login");
 			}
+			return View();
+		}
+		[HttpGet]
+		public IActionResult ForgotPassword()
+		{
 			return View();
 		}
 	}
