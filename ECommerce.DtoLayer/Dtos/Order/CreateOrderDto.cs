@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace ECommerce.DtoLayer.Dtos.Order
 {
-	public record CreateOrderDto(string UserId, List<CreateOrderDetailDto> OrderDetails);
+	public record CreateOrderDto(int UserId, List<CreateOrderDetailDto> OrderDetails, DateTime OrderDate);
 }
