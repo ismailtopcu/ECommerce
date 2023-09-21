@@ -1,4 +1,5 @@
 ﻿using ECommerce.EntityLayer.Concrete;
+using ECommerce.EntityLayer.Concrete.Catalog;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -30,5 +31,6 @@ namespace ECommerce.DataAccessLayer.Concrete
 		public DbSet<Employee> Employees { get; set; }
 		public DbSet<Order> Orders { get; set; }
 		public DbSet<OrderDetail> OrderDetails { get; set; }
+		public DbSet<CatalogSlider> CatalogSliders { get; set; }
 	}
 }

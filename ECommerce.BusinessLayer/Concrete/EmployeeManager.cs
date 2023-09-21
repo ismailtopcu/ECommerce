@@ -10,7 +10,7 @@ namespace ECommerce.BusinessLayer.Concrete
 
 		public EmployeeManager(IEmployeeDal employeeDal)
 		{
-			throw new NotImplementedException();
+			
 			_employeeDal = employeeDal;
 		}
 

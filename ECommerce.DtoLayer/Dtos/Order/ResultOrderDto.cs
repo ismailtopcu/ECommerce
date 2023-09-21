@@ -2,5 +2,5 @@
 
 namespace ECommerce.DtoLayer.Dtos.Order
 {
-	public record ResultOrderDto(int Id, List<UpdateOrderDetailDto> OrderDetails);
+	public record ResultOrderDto(int Id, int UserId, decimal TotalAmount, List<UpdateOrderDetailDto> OrderDetails, DateTime OrderDate);
 }
