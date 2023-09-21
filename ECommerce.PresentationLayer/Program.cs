@@ -15,6 +15,8 @@ builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Contex
 builder.Services.AddScoped<UserManager<AppUser>>();
 builder.Services.AddScoped<SignInManager<AppUser>>();
 builder.Services.AddDbContext<Context>();
+builder.Services.AddHttpClient();
+
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 var app = builder.Build();
 

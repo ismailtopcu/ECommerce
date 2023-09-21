@@ -1,0 +1,37 @@
+﻿@using ECommerce.DtoLayer.Dtos.AccountDto;
+@model List<ResultUserDto>
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-title">
+    <h4>Üye Listesi</h4>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Adı Soyadı</th>
+                <th>Kullanıcı Adı</th>
+                <th>Mail Adresi</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@item.Id</th>
+                    <td>@item.Name @item.Surname</td>
+                    <td>@item.UserName</td>
+                    <td>@item.Email</td>
+                    <td><a href="#" class="btn btn-danger">Sil</a></td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>
+
