@@ -1,14 +1,17 @@
 using ECommerce.DataAccessLayer.Concrete;
+using ECommerce.DtoLayer.Dtos.AccountDto;
 using ECommerce.EntityLayer.Concrete;
+using ECommerce.PresentationLayer.ValidationRules.UserValidationRules;
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddIdentity<AppUser, AppRole>()
-	.AddEntityFrameworkStores<Context>()
-	.AddDefaultTokenProviders();
+builder.Services.AddTransient<IValidator<CreateNewUserDto>, CreateUserValidator>();
+
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
 builder.Services.AddScoped<UserManager<AppUser>>();
 builder.Services.AddScoped<SignInManager<AppUser>>();
 builder.Services.AddDbContext<Context>();
