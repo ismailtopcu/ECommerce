@@ -48,11 +48,19 @@ namespace ECommerce.PresentationLayer.Controllers
 			{
 				return View();
 			}
-			var appUser = _mapper.Map<AppUser>(createNewUserDto);
+			var appUser = new AppUser()
+			{
+				Name=createNewUserDto.Name,
+				Email=createNewUserDto.Mail,
+				Surname=createNewUserDto.Surname,
+				UserName=createNewUserDto.Username,
+				City=createNewUserDto.City
+				
+			};
 			var result = await _userManager.CreateAsync(appUser,createNewUserDto.Password);
 			if (result.Succeeded)
 			{
-				return RedirectToAction("Index", "Login");
+				return RedirectToAction("Login", "Account");
 			}
 			return View();
 		}

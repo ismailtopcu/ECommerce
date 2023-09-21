@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CreateNewUserDto
+@{
 	Layout = null;
 }
 
@@ -55,21 +56,45 @@
 				<div class="content-bottom">
 					<form asp-action="Register" asp-controller="Account" method="post">
 						<div class="field-group">
+							<span class="fa fa-id-card" aria-hidden="true"></span>
+							<div class="wthree-field">
+								<input asp-for="Name" type="text"  placeholder="İsim" required>
+							</div>
+						</div>
+						<div class="field-group">
+							<span class="fa fa-id-badge" aria-hidden="true"></span>
+							<div class="wthree-field">
+								<input asp-for="Surname" type="text" placeholder="Soyisim" required>
+							</div>
+						</div>
+						<div class="field-group">
+							<span class="fa fa-building" aria-hidden="true"></span>
+							<div class="wthree-field">
+								<input asp-for="City" type="text" placeholder="Şehir" required>
+							</div>
+						</div>
+						<div class="field-group">
 							<span class="fa fa-user" aria-hidden="true"></span>
 							<div class="wthree-field">
-								<input name="text1" id="text1" type="text" value="" placeholder="Kullanıcı Adı" required>
+								<input asp-for="Username" type="text" placeholder="Kullanıcı Adı" required>
 							</div>
 						</div>
 						<div class="field-group">
 							<span class="fa fa-envelope" aria-hidden="true"></span>
 							<div class="wthree-field">
-								<input name="email" id="email" type="email" value="" placeholder="E-Posta" required>
+								<input  asp-for="Mail" type="email"  placeholder="E-Posta" required>
 							</div>
 						</div>
 						<div class="field-group">
 							<span class="fa fa-lock" aria-hidden="true"></span>
 							<div class="wthree-field">
-								<input name="password" id="myInput" type="Password" required placeholder="Şifre">
+								<input asp-for="Password" type="password" required placeholder="Şifre">
+							</div>
+						</div>
+						<div class="field-group">
+							<span class="fa fa-lock" aria-hidden="true"></span>
+							<div class="wthree-field">
+								<input asp-for="ConfirmPassword" type="password" required placeholder="Şifreyi Onayla">
 							</div>
 						</div>
 						<div class="wthree-field">

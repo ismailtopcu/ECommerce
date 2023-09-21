@@ -1,4 +1,4 @@
-﻿
+﻿@model LoginUserDto
 @{
     Layout = null;
 }
@@ -58,13 +58,13 @@
 						<div class="field-group">
 							<span class="fa fa-user" aria-hidden="true"></span>
 							<div class="wthree-field">
-								<input name="text1" id="text1" type="text" value="" placeholder="Kullanıcı Adı" required>
+								<input asp-for="Username" type="text" value="" placeholder="Kullanıcı Adı" required>
 							</div>
 						</div>
 						<div class="field-group">
 							<span class="fa fa-lock" aria-hidden="true"></span>
 							<div class="wthree-field">
-								<input name="password" id="myInput" type="Password"  required placeholder="Şifre">
+								<input asp-for="Password" type="password"  required placeholder="Şifre">
 							</div>
 						</div>
 						<div class="wthree-field">
@@ -79,7 +79,7 @@
 								</label>
 							</li>
 							<li>
-								<a href="/Account/ForgotPassword" class="text-right">şifrenizi mi unuttunuz?</a>
+								<a href="/Account/ForgotPassword" class="text-right">Şifrenizi mi unuttunuz?</a>
 							</li>
 							<li class="clearfix"></li>
 						</ul>
