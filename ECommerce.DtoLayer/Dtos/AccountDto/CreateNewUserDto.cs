@@ -22,5 +22,6 @@ namespace ECommerce.DtoLayer.Dtos.AccountDto
 		[Required(ErrorMessage = "Şifre Alanı Gereklidir")]
 		[Compare("Password", ErrorMessage = "Şifreler Uyuşmuyor")]
 		public string ConfirmPassword { get; set; }
-	}
+        public string City { get; set; }
+    }
 }
