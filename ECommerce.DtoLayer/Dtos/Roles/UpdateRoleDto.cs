@@ -9,6 +9,6 @@ namespace ECommerce.DtoLayer.Dtos.Roles
     public class UpdateRoleDto
     {
         public int Id { get; set; }
-        public string RoleName { get; set; }
+        public string Name { get; set; }
     }
 }

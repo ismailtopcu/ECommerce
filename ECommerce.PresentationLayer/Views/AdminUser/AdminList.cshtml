@@ -1,12 +1,12 @@
 ﻿@using ECommerce.DtoLayer.Dtos.AccountDto;
 @model List<ResultUserDto>
 @{
-    ViewData["Title"] = "UserList";
+    ViewData["Title"] = "AdminList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="card-title">
-    <h4>Üye Listesi</h4>
+    <h4>Admin Listesi</h4>
 </div>
 <div class="table-responsive">
     <table class="table">
@@ -16,7 +16,6 @@
                 <th>Adı Soyadı</th>
                 <th>Kullanıcı Adı</th>
                 <th>Mail Adresi</th>
-                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -29,11 +28,10 @@
                     <td>@item.UserName</td>
                     <td>@item.Email</td>
                     <td><a href="#" class="btn btn-danger">Sil</a></td>
-                    <td><a href="/AdminUser/UserDetail/@item.UserName" class="btn btn-primary">Detaylar</a></td>
                 </tr>
             }
         </tbody>
 
     </table>
+    <a href="/AdminUser/CreateAdmin/" class="btn btn-primary" style="float:right">Admin Ekle</a>
 </div>
-

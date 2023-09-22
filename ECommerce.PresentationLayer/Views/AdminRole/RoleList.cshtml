@@ -1,0 +1,34 @@
+﻿@using ECommerce.DtoLayer.Dtos.Roles;
+@model List<ResultRoleDto>
+@{
+    ViewData["Title"] = "RoleList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-title">
+    <h4>Rol Listesi</h4>
+</div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Rol Adı</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <th>@item.Id</th>
+                    <td>@item.Name<td/>
+                    <td><a href="/AdminRole/DeleteRole/@item.Id" class="btn btn-danger">Sil</a></td>
+                    <td><a href="/AdminRole/RoleEdit/@item.Id" class="btn btn-success">Güncelle</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="/AdminRole/AddRole" class="btn btn-primary" style="float:right">Rol Ekle</a>
+</div>

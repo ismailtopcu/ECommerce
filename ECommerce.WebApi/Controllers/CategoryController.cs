@@ -32,7 +32,8 @@ namespace ECommerce.WebApi.Controllers
 			var value = await _categoryService.TGetByIdAsync(id);
 			return Ok(value);
 		}
-		[HttpPost]
+
+        [HttpPost]
 		public async Task<IActionResult> AddCategory(CreateCategoryDto createCategoryDto)
 		{
 			var value = _mapper.Map<Category>(createCategoryDto);
