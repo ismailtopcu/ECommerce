@@ -5,25 +5,20 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                    Free shipping for standard order over $100
+                     100$ üzeri alışverişlerde kargo ücretsiz!
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
+                    <span class="flex-c-m trans-04 p-lr-25">
+                        @User.Identity.Name
+                    </span>
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        Help & FAQs
+                        Profilim
                     </a>
+                    <form id="logout-form" action="/Account/Logout" method="post">
+                        <a href="#" class="flex-c-m trans-04 p-lr-25" onclick="logout();">Çıkış Yap</a>
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        My Account
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        EN
-                    </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        USD
-                    </a>
+                    </form>
                 </div>
             </div>
         </div>
@@ -32,40 +27,31 @@
             <nav class="limiter-menu-desktop container">
 
                 <!-- Logo desktop -->
-                <a href="#" class="logo">
+                <a href="/home/index" class="logo">
                     <img src="~/cozastore-master/images/icons/logo-01.png" alt="IMG-LOGO">
                 </a>
 
                 <!-- Menu desktop -->
                 <div class="menu-desktop">
                     <ul class="main-menu">
-                        <li class="active-menu">
+                        <li >
                             <a href="/home/index">Home</a>
-                            <ul class="sub-menu">
-                                <li><a href="index.html">Homepage 1</a></li>
-                                <li><a href="home-02.html">Homepage 2</a></li>
-                                <li><a href="home-03.html">Homepage 3</a></li>
-                            </ul>
                         </li>
 
                         <li>
-                            <a href="product.html">Shop</a>
+                            <a href="product.html">Ürünler</a>
                         </li>
 
-                        <li class="label1" data-label1="hot">
-                            <a href="shoping-cart.html">Features</a>
-                        </li>
-
-                        <li>
-                            <a href="blog.html">Blog</a>
+                        <li class="label1" data-label1="yeni">
+                            <a href="shoping-cart.html">Fırsatlar</a>
                         </li>
 
                         <li>
-                            <a href="about.html">About</a>
+                            <a href="/about/index">Hakkımızda</a>
                         </li>
 
                         <li>
-                            <a href="contact.html">Contact</a>
+                            <a href="/contact/index">İletişim</a>
                         </li>
                     </ul>
                 </div>
@@ -200,3 +186,9 @@
         </div>
     </div>
 </header>
+<script>
+    function logout() {
+        var form = document.getElementById("logout-form");
+        form.submit();
+    }
+</script>

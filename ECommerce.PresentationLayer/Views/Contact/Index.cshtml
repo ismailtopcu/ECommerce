@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Content page -->
+<section class="bg0 p-t-104 p-b-116">
+	<div class="container">
+		<div class="flex-w flex-tr">
+			@await Component.InvokeAsync("MailContact")
+			@await Component.InvokeAsync("InfoContact")
+		</div>
+	</div>
+</section>
+
+
+<!-- Map -->
+<div class="map">
+	<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12046.358240287756!2d29.0291713!3d40.9904675!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab9f0b8afbb1f%3A0x703cd0993370cf84!2zS2FkxLFrw7Z5IEJvxJ9hIEhleWtlbGk!5e0!3m2!1str!2str!4v1695332305100!5m2!1str!2str" width="1861" height="467" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
