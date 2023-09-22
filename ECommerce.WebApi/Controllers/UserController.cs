@@ -14,18 +14,22 @@ namespace ECommerce.WebApi.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserManager<AppUser> _userManager;
+   
         public UserController(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
         }
 
+        //Üye bilgilerini çeker
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllUsersAsync() 
+        public async Task<IActionResult> GetAllMembersAsync() 
         {
-            var values = await _userManager.Users.ToListAsync();
+            var values = await _userManager.GetUsersInRoleAsync("Member");
+            
             return Ok(values);
         }
 
+        //Kullanıcı siler
         [HttpDelete("[action]/{userName}")]
         public async Task<IActionResult> DeleteUserAsync(string userName) 
         {
@@ -36,15 +40,20 @@ namespace ECommerce.WebApi.Controllers
             return Ok("Başarıyla silindi");
         }
 
+        //Sadece bir üye bilgilerini getirir.
         [HttpGet("[action]/{userName}")]
         public async Task<IActionResult> GetOneUserAsync(string userName) 
         {
             var value = await _userManager.FindByNameAsync(userName);
             if (value == null) { return BadRequest("Kullanıcı bulunamadı."); }
 
+            var isAdmin = await _userManager.IsInRoleAsync(value, "Admin");
+            if (isAdmin == true) { return BadRequest("Admin bilgisi çekilemez."); }
             return Ok(value);
         }
 
+
+        //Kullanıcı günceller
         [HttpPut("[action]")]
         public async Task<IActionResult> UpdateUserAsync(UpdateUserDto updateUserDto)
         {
@@ -59,6 +68,7 @@ namespace ECommerce.WebApi.Controllers
             return Ok("Başarıyla güncellendi");
         }
 
+        //Üye oluşturur.
         [HttpPost("[action]")]
         public async Task<IActionResult> CreateUserAsync(CreateNewUserDto createNewUserDto)
         {
@@ -67,16 +77,18 @@ namespace ECommerce.WebApi.Controllers
                 UserName = createNewUserDto.Username,
                 Email = createNewUserDto.Mail,
                 Name = createNewUserDto.Name,
-                Surname = createNewUserDto.Surname,
-                City = " "
+                Surname = createNewUserDto.Surname
             };
             var result = await _userManager.CreateAsync(user, createNewUserDto.Password);
             if (!result.Succeeded) { return BadRequest("Bir hata meydana geldi."); }
+
+            await _userManager.AddToRoleAsync(user, "Member");
 
             return Ok("Kullanıcı oluşturuldu");
 
         }
 
+        //Kullanıcı şifresi değiştirir.
         [HttpPost("[action]/{userName},{currentPassword},{newPassword}")]
         public async Task<IActionResult> ChangePasswordAsync(string userName, string currentPassword, string newPassword)
         {
@@ -86,6 +98,7 @@ namespace ECommerce.WebApi.Controllers
             return Ok("Şifre güncellendi");
         }
 
+        //Kullanıcıya rol verir.
         [HttpPost("[action]/{userName},{role}")]
         public async Task<IActionResult> AddRoleAsync(string userName,string role)
         {

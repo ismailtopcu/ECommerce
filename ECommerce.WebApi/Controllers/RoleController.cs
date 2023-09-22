@@ -13,11 +13,9 @@ namespace ECommerce.WebApi.Controllers
     public class RoleController : ControllerBase
     {
         private readonly RoleManager<AppRole> _roleManager;
-        private readonly IMapper _mapper;
-        public RoleController(RoleManager<AppRole> roleManager, IMapper mapper)
+        public RoleController(RoleManager<AppRole> roleManager)
         {
             _roleManager = roleManager;
-            _mapper = mapper;
         }
 
         [HttpGet]
@@ -28,12 +26,12 @@ namespace ECommerce.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddRole(string roleName)
+        public async Task<IActionResult> AddRole(CreateRoleDto roleName)
         {
             
             await _roleManager.CreateAsync(new AppRole
             {
-                Name = roleName
+                Name = roleName.RoleName
             });
             return Ok();
         }
@@ -50,7 +48,10 @@ namespace ECommerce.WebApi.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateRole(UpdateRoleDto updateRoleDto)
         {
-            var role = _mapper.Map<AppRole>(updateRoleDto);
+            var role = _roleManager.Roles.FirstOrDefault(x=>x.Id == updateRoleDto.Id);
+            if (role == null) { return BadRequest(); }
+            role.Name = updateRoleDto.Name;
+
             await _roleManager.UpdateAsync(role);
             return Ok();
         }
@@ -60,7 +61,6 @@ namespace ECommerce.WebApi.Controllers
         {
             var role = await _roleManager.Roles.FirstOrDefaultAsync(y => y.Id == id);
             if (role == null) { return BadRequest(); }
-
             return Ok(role);
         }
     }

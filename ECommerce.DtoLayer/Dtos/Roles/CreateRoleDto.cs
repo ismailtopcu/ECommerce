@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace ECommerce.DtoLayer.Dtos.Roles
 {
-    public class ResultRoleDto
+    public class CreateRoleDto
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public string RoleName { get; set; }
     }
 }

@@ -1,0 +1,18 @@
+﻿@using ECommerce.DtoLayer.Dtos.Roles;
+@model CreateRoleDto
+@{
+    ViewData["Title"] = "AddRole";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-title">
+    <h4>Rol Ekle</h4>
+</div>
+<div class="card-body">
+    <form method="post" >
+    <input type="text" class="form-control input-default" asp-for="RoleName" placeholder="Rol Adı Giriniz" required>
+    <br />
+    <button class="btn btn-primary" style="float:right">Ekle</button>
+    </form>
+</div>
+

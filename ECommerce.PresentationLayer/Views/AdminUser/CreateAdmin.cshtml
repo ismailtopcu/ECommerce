@@ -1,0 +1,28 @@
+﻿@model CreateNewUserDto
+@{
+    ViewData["Title"] = "CreateAdmin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-title">
+    <h4>Admin Ekle</h4>
+</div>
+<div class="card-body">
+    <form method="post">
+        <input type="text" class="form-control input-default" asp-for="Name" placeholder="Ad" required>
+        <br />
+        <input type="text" class="form-control input-default" asp-for="Surname" placeholder="Soyad" required>
+        <br />
+        <input type="text" class="form-control input-default" asp-for="Username" placeholder="Kullanıcı Adı" required>
+        <br />
+        <input type="text" class="form-control input-default" asp-for="Mail" placeholder="Mail Adresi" required>
+        <br />
+        <input type="text" class="form-control input-default" asp-for="City" placeholder="Şehir" required>
+        <br />
+        <input type="text" class="form-control input-default" asp-for="Password" placeholder="Şifre" required>
+        <br />
+        <input type="text" class="form-control input-default" asp-for="ConfirmPassword" placeholder="Şifre Tekrar" required>
+        <br />
+        <button class="btn btn-primary" style="float:right">Ekle</button>
+    </form>
+</div>
