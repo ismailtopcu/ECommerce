@@ -79,6 +79,7 @@ namespace ECommerce.WebApi.Controllers
             user.Surname = updateUserDto.Surname;
             user.Name = updateUserDto.Name;
             user.ImageUrl = updateUserDto.ImageUrl;
+            user.PhoneNumber = updateUserDto.PhoneNumber;
 
             await _userManager.UpdateAsync(user);
             return Ok("Başarıyla güncellendi");

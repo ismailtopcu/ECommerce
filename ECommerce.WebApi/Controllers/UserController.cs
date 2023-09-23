@@ -63,6 +63,7 @@ namespace ECommerce.WebApi.Controllers
             user.Surname = updateUserDto.Surname;
             user.Name = updateUserDto.Name;
             user.ImageUrl = updateUserDto.ImageUrl;
+            user.PhoneNumber = updateUserDto.PhoneNumber;
 
             await _userManager.UpdateAsync(user);
             return Ok("Başarıyla güncellendi");
@@ -89,11 +90,13 @@ namespace ECommerce.WebApi.Controllers
         }
 
         //Kullanıcı şifresi değiştirir.
-        [HttpPost("[action]/{userName},{currentPassword},{newPassword}")]
-        public async Task<IActionResult> ChangePasswordAsync(string userName, string currentPassword, string newPassword)
+        [HttpPost("[action]")]
+        public async Task<IActionResult> ChangePasswordAsync(UpdatePasswordDto updatePasswordDto)
         {
-            var user = await _userManager.FindByNameAsync(userName);
-            var result = await _userManager.ChangePasswordAsync(user, currentPassword, newPassword);
+            var user = await _userManager.FindByNameAsync(updatePasswordDto.UserName);
+            if (user == null) { return BadRequest("Kullanıcı bulunamadı"); }
+
+            var result = await _userManager.ChangePasswordAsync(user, updatePasswordDto.OldPassword, updatePasswordDto.Password);
             if (!result.Succeeded) { return BadRequest(); }
             return Ok("Şifre güncellendi");
         }

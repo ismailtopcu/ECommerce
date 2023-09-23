@@ -1,0 +1,41 @@
+﻿@model ResultUserDetailDto
+
+@{
+    string imageUrl;
+    if (Model.ImageUrl == null) {imageUrl = "/adminweb/images/profile/emptyProfile.png";}
+    else {imageUrl = Model.ImageUrl;}
+
+    string phoneNumber;
+    if(Model.PhoneNumber == null) { phoneNumber = "(Telefon bilgisi yok.)"; }
+    else{ phoneNumber = Model.PhoneNumber; }
+
+}
+
+<div class="col-lg-4 col-xl-3">
+    <div class="card">
+        <div class="card-body">
+            <div class="media align-items-center mb-4">
+                <img class="mr-3" src="@imageUrl" width="80" height="80" alt="">
+                <div class="media-body">
+                    <h3 class="mb-0">@Model.Name @Model.Surname</h3>
+                    <p class="text-muted mb-0">@Model.City</p>
+                </div>
+            </div>
+
+            <div class="row mb-5">
+                <div class="col">
+                    <div class="card card-profile text-center">
+                        <span class="mb-1 text-primary"><i class="bi bi-bag-check"></i></span>
+                        <h3 class="mb-0">263</h3>
+                        <p class="text-muted px-4">Toplam Sipariş</p>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="card-profile__info">
+                <li class="mb-1"><strong class="text-dark mr-4">Mobil</strong> <span>@phoneNumber</span></li>
+                <li><strong class="text-dark mr-4">Email</strong> <span>@Model.Email</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
