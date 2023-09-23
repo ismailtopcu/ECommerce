@@ -6,15 +6,10 @@ using ECommerce.DtoLayer.Dtos.Order;
 using ECommerce.DtoLayer.Dtos.OrderDetail;
 using ECommerce.DtoLayer.Dtos.Product;
 using ECommerce.EntityLayer.Concrete;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ECommerce.DtoLayer.Mapping
+namespace ECommerce.WebApi.Mapping
 {
-	public class AutoMapperConfig : Profile
+	public class AutoMapperConfig:Profile
 	{
 		public AutoMapperConfig()
 		{

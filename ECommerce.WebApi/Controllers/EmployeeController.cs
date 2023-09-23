@@ -45,7 +45,7 @@ namespace ECommerce.WebApi.Controllers
 		[HttpPost]
 		public async Task<IActionResult> AddEmployee(CreateEmployeeDto createEmployeeDto)
 		{
-			var value = _mapper.Map<Employee>(createEmployeeDto);
+			var value = _mapper.Map<Employee>(createEmployeeDto); 			
 			await _employeeService.TInsertAsync(value);
 			return Ok();
 		}
