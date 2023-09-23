@@ -27,11 +27,11 @@
                     <td>@item.Name @item.Surname</td>
                     <td>@item.UserName</td>
                     <td>@item.Email</td>
-                    <td><a href="#" class="btn btn-danger">Sil</a></td>
+                    <td><a href="/adminpanel/deleteadmin/@item.UserName" class="btn btn-danger">Sil</a></td>
                 </tr>
             }
         </tbody>
 
     </table>
-    <a href="/AdminUser/CreateAdmin/" class="btn btn-primary" style="float:right">Admin Ekle</a>
+    <a href="/adminpanel/createadmin/" class="btn btn-primary" style="float:right">Admin Ekle</a>
 </div>

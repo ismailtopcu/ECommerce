@@ -3,7 +3,7 @@
         <ul class="metismenu" id="menu">
             <li class="nav-label">Dashboard</li>
             <li>
-                <a href="widgets.html" aria-expanded="false">
+                <a href="~/adminpanel/dashboard" aria-expanded="false">
                     <i class="bi bi-speedometer"></i><span class="nav-text">Dashboard</span>
                 </a>
             </li>
@@ -12,8 +12,8 @@
                     <i class="bi bi-grid-1x2-fill"></i><span class="nav-text">Kategoriler</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="./layout-blank.html">Kategori Listesi</a></li>
-                    <li><a href="./layout-one-column.html">Kategori Ekle</a></li>
+                    <li><a href="~/adminpanel/categorylist">Kategori Listesi</a></li>
+                    <li><a href="~/adminpanel/addcategory">Kategori Ekle</a></li>
                 </ul>
             </li>
             <li class="mega-menu mega-menu-sm">
@@ -21,29 +21,46 @@
                     <i class="bi bi-box-fill"></i><span class="nav-text">Ürünler</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="./layout-blank.html">Ürün Listesi</a></li>
-                    <li><a href="./layout-one-column.html">Ürün Ekle</a></li>
+                    <li><a href="~/adminpanel/productlist">Ürün Listesi</a></li>
+                    <li><a href="~/adminpanel/addproduct">Ürün Ekle</a></li>
                 </ul>
             </li>
             <li>
-                <a href="widgets.html" aria-expanded="false">
+                <a href="~/adminpanel/orders" aria-expanded="false">
                     <i class="bi bi-bag-fill"></i><span class="nav-text">Siparişler</span>
                 </a>
             </li>
-            <li>
-                <a href="~/AdminUser/AdminList" aria-expanded="false">
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="bi bi-file-earmark-person-fill"></i><span class="nav-text">Çalışanlar</span>
+                </a>
+                <ul aria-expanded="false">
+                    <li><a href="~/adminpanel/employeelist">Çalışan Listesi</a></li>
+                    <li><a href="~/adminpanel/addemployee">Çalışan Ekle</a></li>
+                </ul>
+            </li>
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                     <i class="bi bi-person-circle"></i><span class="nav-text">Adminler</span>
                 </a>
+                <ul aria-expanded="false">
+                    <li><a href="~/adminpanel/adminlist">Admin Listesi</a></li>
+                    <li><a href="~/adminpanel/createadmin">Admin Ekle</a></li>
+                </ul>
             </li>
             <li>
-                <a href="~/AdminUser/UserList" aria-expanded="false">
+                <a href="~/adminpanel/userlist" aria-expanded="false">
                     <i class="bi bi-people-fill"></i><span class="nav-text">Üyeler</span>
                 </a>
             </li>
-            <li>
-                <a href="~/AdminRole/RoleList" aria-expanded="false">
-                    <i class="bi bi-person-fill-lock"></i><span class="nav-text">Roller</span>
+            <li class="mega-menu mega-menu-sm">
+                <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                    <i class="bi bi-key-fill"></i><span class="nav-text">Roller</span>
                 </a>
+                <ul aria-expanded="false">
+                    <li><a href="~/adminpanel/rolelist">Rol Listesi</a></li>
+                    <li><a href="~/adminpanel/addrole">Rol Ekle</a></li>
+                </ul>
             </li>
             <li class="nav-label">DİĞER</li>
             <li class="mega-menu mega-menu-sm">
@@ -61,9 +78,14 @@
                     <i class="bi bi-gear-fill"></i><span class="nav-text">Ayarlar</span>
                 </a>
                 <ul aria-expanded="false">
-                    <li><a href="./layout-blank.html">Profili Düzenle</a></li>
-                    <li><a href="./layout-one-column.html">Şifre Değiştir</a></li>
+                    <li><a href="~/adminpanel/settings/profile">Profili Düzenle</a></li>
+                    <li><a href="~/adminpanel/settings/password">Şifre Değiştir</a></li>
                 </ul>
+            </li>
+            <li>
+                <a href="/" aria-expanded="false">
+                    <i class="bi bi-caret-up-square-fill"></i><span class="nav-text">Siteye Git</span>
+                </a>
             </li>
             <li>
                 <a href="widgets.html" aria-expanded="false">

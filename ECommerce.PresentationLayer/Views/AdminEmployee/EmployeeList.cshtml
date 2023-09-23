@@ -1,12 +1,12 @@
-﻿@using ECommerce.DtoLayer.Dtos.AccountDto;
-@model List<ResultUserDto>
+﻿@using ECommerce.DtoLayer.Dtos.Employee;
+@model List<ResultEmployeeDto>
 @{
-    ViewData["Title"] = "UserList";
+    ViewData["Title"] = "EmployeeList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="card-title">
-    <h4>Üye Listesi</h4>
+    <h4>Çalışan Listesi</h4>
 </div>
 <div class="table-responsive">
     <table class="table">
@@ -14,8 +14,8 @@
             <tr>
                 <th>#</th>
                 <th>Adı Soyadı</th>
-                <th>Kullanıcı Adı</th>
-                <th>Mail Adresi</th>
+                <th>Görev Tanımı</th>
+                <th>Açıklama</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -26,14 +26,12 @@
                 <tr>
                     <th>@item.Id</th>
                     <td>@item.Name @item.Surname</td>
-                    <td>@item.UserName</td>
-                    <td>@item.Email</td>
-                    <td><a href="/adminpanel/deleteuser/@item.UserName" class="btn btn-danger">Sil</a></td>
-                    <td><a href="/adminpanel/userdetail/@item.UserName" class="btn btn-primary">Detaylar</a></td>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td><a href="/adminpanel/deleteemployee/@item.Id" class="btn btn-danger">Sil</a></td>
                 </tr>
             }
         </tbody>
-
     </table>
+    <a href="/adminpanel/addemployee/" class="btn btn-primary" style="float:right">Çalışan Ekle</a>
 </div>
-

@@ -15,6 +15,7 @@ namespace ECommerce.PresentationLayer.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
+        [Route("adminpanel/rolelist")]
         public async Task<IActionResult> RoleList()
         {
             var client = _httpClientFactory.CreateClient();
@@ -28,13 +29,14 @@ namespace ECommerce.PresentationLayer.Controllers
             return View();
         }
 
-
         [HttpGet]
+        [Route("adminpanel/addrole")]
         public IActionResult AddRole() 
         {
             return View();
         }
         [HttpPost]
+        [Route("adminpanel/addrole")]
         public async Task<IActionResult> AddRole(CreateRoleDto createRoleDto)
         {
             var client = _httpClientFactory.CreateClient();
@@ -49,6 +51,7 @@ namespace ECommerce.PresentationLayer.Controllers
         }
 
         [HttpGet]
+        [Route("adminpanel/editrole/{id}")]
         public async Task<IActionResult> RoleEdit(int id) 
         {
             var client = _httpClientFactory.CreateClient();
@@ -62,6 +65,7 @@ namespace ECommerce.PresentationLayer.Controllers
             return RedirectToAction("RoleList", "AdminRole");
         }
         [HttpPost]
+        [Route("adminpanel/editrole/{id}")]
         public async Task<IActionResult> RoleEdit(UpdateRoleDto updateRoleDto)
         {
             var client = _httpClientFactory.CreateClient();
@@ -75,7 +79,7 @@ namespace ECommerce.PresentationLayer.Controllers
             return View();
         }
 
-
+        [Route("adminpanel/deleterole/{id}")]
         public async Task<IActionResult> DeleteRole(int id) 
         {
             var client = _httpClientFactory.CreateClient();
