@@ -1,7 +1,10 @@
 
 
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using ECommerce.BusinessLayer.Abstract;
 using ECommerce.BusinessLayer.Concrete;
+using ECommerce.BusinessLayer.DependencyResolves.Autofac;
 using ECommerce.DataAccessLayer.Abstract;
 using ECommerce.DataAccessLayer.Concrete;
 using ECommerce.DataAccessLayer.EntityFramework;
@@ -16,20 +19,26 @@ builder.Services.AddDbContext<Context>();
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
 
 
-builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
-builder.Services.AddScoped<ICategoryService, CategoryManager>();
+//builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
+//builder.Services.AddScoped<ICategoryService, CategoryManager>();
 
-builder.Services.AddScoped<IProductDal, EfProductDal>();
-builder.Services.AddScoped<IProductService, ProductManager>();
+//builder.Services.AddScoped<IProductDal, EfProductDal>();
+//builder.Services.AddScoped<IProductService, ProductManager>();
 
-builder.Services.AddScoped<IOrderDal, EfOrderDal>();
-builder.Services.AddScoped<IOrderService, OrderManager>();
+//builder.Services.AddScoped<IOrderDal, EfOrderDal>();
+//builder.Services.AddScoped<IOrderService, OrderManager>();
 
-builder.Services.AddScoped<IOrderDetailDal, EfOrderDetailDal>();
-builder.Services.AddScoped<IOrderDetailService, OrderDetailManager>();
+//builder.Services.AddScoped<IOrderDetailDal, EfOrderDetailDal>();
+//builder.Services.AddScoped<IOrderDetailService, OrderDetailManager>();
 
-builder.Services.AddScoped<IEmployeeDal, EfEmployeeDal>();
-builder.Services.AddScoped<IEmployeeService, EmployeeManager>();
+//builder.Services.AddScoped<IEmployeeDal, EfEmployeeDal>();
+//builder.Services.AddScoped<IEmployeeService, EmployeeManager>();
+
+builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
+builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
+{
+	builder.RegisterModule(new AutofacBusinessModule());
+});
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

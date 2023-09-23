@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace ECommerce.DtoLayer.Dtos.Employee
 {
-	public record CreateEmployeeDto(int Id, string Name, string Surname, string? Description, string? Image, string Title);
+	public record CreateEmployeeDto(string Name, string Surname, string? Description, string? Image, string Title);
 }
