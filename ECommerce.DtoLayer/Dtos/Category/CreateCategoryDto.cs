@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace ECommerce.DtoLayer.Dtos.Category
 {
-	public record CreateCategoryDto(string Name, string? Description, string? Image);
+	public record CreateCategoryDto(string Name, string? Description, string? ImageUrl, int? ParentCategoryId);
 }

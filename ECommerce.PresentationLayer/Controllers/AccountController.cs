@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.PresentationLayer.Controllers
 {
+	[AllowAnonymous]
 	public class AccountController : Controller
 	{
 		private readonly UserManager<AppUser> _userManager;

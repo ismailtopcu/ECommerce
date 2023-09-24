@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.WebApi.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("api/[controller]/[action]")]
 	[ApiController]
 	public class EmployeeController : ControllerBase
 	{
@@ -21,7 +21,7 @@ namespace ECommerce.WebApi.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> GellAllEmployees()
+		public async Task<IActionResult> GetAllEmployees()
 		{
 			var employees = await _employeeService.TGetListAsync();
 			return Ok(employees);

@@ -1,5 +1,6 @@
 ﻿using ECommerce.DtoLayer.Dtos.AccountDto;
 using ECommerce.DtoLayer.Dtos.Employee;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -7,6 +8,7 @@ using System.Text;
 
 namespace ECommerce.PresentationLayer.Controllers
 {
+    [Authorize(Policy = "AdminPolicy")]
     public class AdminEmployeeController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -59,11 +61,10 @@ namespace ECommerce.PresentationLayer.Controllers
             return View();
         }
 
-        [Route("adminpanel/deleteemployee")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync("https://localhost:7175/api/Employee/DeleteEmployee/" + id);
+            var responseMessage = await client.DeleteAsync("https://localhost:7175/api/Employee/DeleteEmployee?id=" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("EmployeeList");
@@ -84,7 +85,7 @@ namespace ECommerce.PresentationLayer.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createEmployeeDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var respMessage = await client.PostAsync("https://localhost:7175/api/Employee/CreateEmployee", content);
+            var respMessage = await client.PostAsync("https://localhost:7175/api/Employee/AddEmployee", content);
             if (respMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("EmployeeList");

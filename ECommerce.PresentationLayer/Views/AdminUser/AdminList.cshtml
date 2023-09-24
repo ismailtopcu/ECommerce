@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "AdminList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
 }
 
 <div class="card-title">
@@ -16,14 +17,15 @@
                 <th>Adı Soyadı</th>
                 <th>Kullanıcı Adı</th>
                 <th>Mail Adresi</th>
-                <th></th>
+                <th>Sil</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
+                count++;
                 <tr>
-                    <th>@item.Id</th>
+                    <th>@count</th>
                     <td>@item.Name @item.Surname</td>
                     <td>@item.UserName</td>
                     <td>@item.Email</td>

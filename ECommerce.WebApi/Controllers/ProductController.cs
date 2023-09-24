@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.WebApi.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
+    [Route("api/[controller]/[action]")]
+    [ApiController]
 	public class ProductController : ControllerBase
 	{
 		private readonly IProductService _productService;
@@ -21,7 +21,7 @@ namespace ECommerce.WebApi.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> GellAllProducts()
+		public async Task<IActionResult> GetAllProducts()
 		{
 			var products = await _productService.TGetListAsync();
 			return Ok(products);

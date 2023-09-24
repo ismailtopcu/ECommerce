@@ -1,47 +1,30 @@
-﻿@using ECommerce.DtoLayer.Dtos.Employee;
-@model CreateEmployeeDto
-
+﻿@model UpdateProductDto
 @{
-    ViewData["Title"] = "CreateEmployee";
+    ViewData["Title"] = "UpdateProduct";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
 <div class="card-title">
-    <h4>Çalışan Ekleme Sayfası</h4>
+    <h4>Ürün Güncelleme Sayfası</h4>
 </div>
 <div class="card-body">
     <div class="form-validation">
         <form class="form-valide" method="post">
             <div class="form-group row">
+                <input type="hidden" asp-for="Id" />
                 <label class="col-lg-4 col-form-label" for="val-email">
-                    İsim <span class="text-danger">*</span>
+                    Ürün Adı <span class="text-danger">*</span>
                 </label>
                 <div class="col-lg-6">
-                    <input type="text" class="form-control" asp-for="Name" placeholder="İsim giriniz..">
+                    <input type="text" class="form-control" asp-for="Name" placeholder="Ürün adı giriniz..">
                 </div>
             </div>
             <div class="form-group row">
                 <label class="col-lg-4 col-form-label" for="val-currency">
-                    Soyisim <span class="text-danger">*</span>
+                    Fiyat <span class="text-danger">*</span>
                 </label>
                 <div class="col-lg-6">
-                    <input type="text" class="form-control" asp-for="Surname" placeholder="Soyisim giriniz..">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="val-currency">
-                    Görev Tanımı <span class="text-danger">*</span>
-                </label>
-                <div class="col-lg-6">
-                    <input type="text" class="form-control" asp-for="Title" placeholder="Görev tanımı giriniz..">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-lg-4 col-form-label" for="val-currency">
-                    Fotoğraf <span class="text-danger">*</span>
-                </label>
-                <div class="col-lg-6">
-                    <input type="text" class="form-control" asp-for="Image" placeholder="Fotoğraf url giriniz..">
+                    <input type="text" class="form-control" asp-for="Price" placeholder="Ürün fiyatı giriniz..">
                 </div>
             </div>
             <div class="form-group row">
@@ -49,7 +32,34 @@
                     Açıklama <span class="text-danger">*</span>
                 </label>
                 <div class="col-lg-6">
-                    <input type="text" class="form-control" asp-for="Description" placeholder="Açıklama giriniz..">
+                    <input type="text" class="form-control" asp-for="Description" placeholder="Ürün için açıklama giriniz..">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="val-currency">
+                    Ürün Görseli <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" asp-for="Image" placeholder="Ürün için görsel url giriniz..">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="val-currency">
+                    Stok <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" asp-for="Stock" placeholder="Stok bilgisi giriniz..">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-lg-4 col-form-label" for="val-currency">
+                    Kategori <span class="text-danger">*</span>
+                </label>
+                <div class="col-lg-6">
+                    <input type="text" class="form-control" asp-for="CategoryId" placeholder="Kategori bilgisi giriniz..">
                 </div>
             </div>
             <div class="form-group row">
@@ -60,3 +70,4 @@
         </form>
     </div>
 </div>
+
