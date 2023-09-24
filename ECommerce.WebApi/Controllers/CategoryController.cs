@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerce.WebApi.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
+    [Route("api/[controller]/[action]")]
+    [ApiController]
 	public class CategoryController : ControllerBase
 	{
 		private readonly ICategoryService _categoryService;
@@ -21,7 +21,7 @@ namespace ECommerce.WebApi.Controllers
 		}
 
 		[HttpGet]
-		public async Task<IActionResult> GetAllCategory()
+		public async Task<IActionResult> GetAllCategories()
 		{
 			var values = await _categoryService.TGetListAsync();
 			return Ok(values);

@@ -1,11 +1,13 @@
 ﻿using ECommerce.DtoLayer.Dtos.AccountDto;
 using ECommerce.DtoLayer.Dtos.Roles;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace ECommerce.PresentationLayer.Controllers
 {
+    [Authorize(Policy = "AdminPolicy")]
     public class AdminRoleController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;

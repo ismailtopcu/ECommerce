@@ -1,0 +1,46 @@
+﻿@model List<ResultProductDto>
+@{
+	ViewData["Title"] = "ProductList";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	int count = 0;
+}
+
+<div class="card-title">
+	<h4>Ürün Listesi</h4>
+</div>
+<div class="table-responsive">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Ürün</th>
+				<th>Fiyat</th>
+				<th>Açıklama</th>
+				<th>Görsel</th>
+				<th>Stock</th>
+				<th>Kategori</th>
+				<th>Sil</th>
+				<th>Güncelle</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				count++;
+				<tr>
+					<th>@count</th>
+					<td><a href="#">@item.Name </td>
+					<td>@item.Price</td>
+					<td>@item.Description</td>
+					<td><img src="@item.Image" alt="Image" style="max-width: 50px; max-height: 50px;"></td>
+					<td>@item.Stock</td>
+					<td>@item.CategoryId</td>
+					<td><a href="/adminproduct/deleteproduct/@item.Id" class="btn btn-danger">Sil</a></td>
+					<td><a href="/adminpanel/updateproduct/@item.Id" class="btn btn-success">Güncelle</a></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+	<a href="/adminpanel/addproduct/" class="btn btn-primary" style="float:right">Ürün Ekle</a>
+</div>
+

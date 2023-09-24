@@ -1,35 +1,40 @@
-﻿
+﻿@model List<ResultCategoryDto>
 @{
-    ViewData["Title"] = "CategoryList";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	ViewData["Title"] = "CategoryList";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+	int count = 0;
+
 }
 
 <div class="card-title">
-    <h4>Kategori Listesi</h4>
+	<h4>Kategori Listesi</h4>
 </div>
 <div class="table-responsive">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Adı Soyadı</th>
-                <th>Kullanıcı Adı</th>
-                <th>Mail Adresi</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-@*             @foreach (var item in Model)
-            {
-                <tr>
-                    <th>@item.Id</th>
-                    <td>@item.Name @item.Surname</td>
-                    <td>@item.UserName</td>
-                    <td>@item.Email</td>
-                    <td><a href="#" class="btn btn-danger">Sil</a></td>
-                </tr>
-            } *@
-        </tbody>
-
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Kategori Adı</th>
+				<th>Description</th>
+				<th>Üst Kategori</th>
+				<th>Sil</th>
+				<th>Güncelle</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				count++;
+				<tr>
+					<th>@count</th>
+					<td><a href="#">@item.Name </td>
+					<td>@item.Description</td>
+					<td></td>
+					<td><a href="/admincategory/deletecategory/@item.Id" class="btn btn-danger">Sil</a></td>
+					<td><a href="/adminpanel/updatecategory/@item.Id" class="btn btn-success">Güncelle</a></td>
+				</tr>
+			}
+		</tbody>
+	</table>
+	<a href="/adminpanel/addcategory/" class="btn btn-primary" style="float:right">Kategori Ekle</a>
 </div>

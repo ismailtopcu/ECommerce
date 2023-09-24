@@ -16,20 +16,22 @@ namespace ECommerce.BusinessLayer.DependencyResolves.Autofac
 		protected override void Load(ContainerBuilder builder)
 		{
 
-			builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().SingleInstance();
-			builder.RegisterType<CategoryManager>().As<ICategoryService>().SingleInstance();
+			builder.RegisterType<EfCategoryDal>().As<ICategoryDal>().InstancePerLifetimeScope();
+			builder.RegisterType<CategoryManager>().As<ICategoryService>().InstancePerLifetimeScope();
 
-			builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
-			builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
+			builder.RegisterType<EfProductDal>().As<IProductDal>().InstancePerLifetimeScope();
+			builder.RegisterType<ProductManager>().As<IProductService>().InstancePerLifetimeScope();
 
-			builder.RegisterType<EfOrderDal>().As<IOrderDal>().SingleInstance();
-			builder.RegisterType<OrderManager>().As<IOrderService>().SingleInstance();
+			builder.RegisterType<EfOrderDal>().As<IOrderDal>().InstancePerLifetimeScope();
+			builder.RegisterType<OrderManager>().As<IOrderService>().InstancePerLifetimeScope();
 
-			builder.RegisterType<EfOrderDetailDal>().As<IOrderDetailDal>().SingleInstance();
-			builder.RegisterType<OrderDetailManager>().As<IOrderDetailService>().SingleInstance();
+			builder.RegisterType<EfOrderDetailDal>().As<IOrderDetailDal>().InstancePerLifetimeScope();
+			builder.RegisterType<OrderDetailManager>().As<IOrderDetailService>().InstancePerLifetimeScope();
 
-			builder.RegisterType<EfEmployeeDal>().As<IEmployeeDal>().SingleInstance();
-			builder.RegisterType<EmployeeManager>().As<IEmployeeService>().SingleInstance();
+			builder.RegisterType<EfEmployeeDal>().As<IEmployeeDal>().InstancePerLifetimeScope();
+			builder.RegisterType<EmployeeManager>().As<IEmployeeService>().InstancePerLifetimeScope();
+
+
 		}
 	}
 }

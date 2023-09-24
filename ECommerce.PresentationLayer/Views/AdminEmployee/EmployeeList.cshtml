@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "EmployeeList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    int count = 0;
 }
 
 <div class="card-title">
@@ -16,19 +17,21 @@
                 <th>Adı Soyadı</th>
                 <th>Görev Tanımı</th>
                 <th>Açıklama</th>
-                <th></th>
-                <th></th>
+                <th>Sil</th>
+                <th>Güncelle</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
+                count++;
                 <tr>
-                    <th>@item.Id</th>
+                    <th>@count</th>
                     <td>@item.Name @item.Surname</td>
                     <td>@item.Title</td>
                     <td>@item.Description</td>
-                    <td><a href="/adminpanel/deleteemployee/@item.Id" class="btn btn-danger">Sil</a></td>
+                    <td><a href="/adminemployee/deleteemployee/@item.Id" class="btn btn-danger">Sil</a></td>
+                    <td><a href="/adminpanel/updateemployee/@item.Id" class="btn btn-success">Güncelle</a></td>
                 </tr>
             }
         </tbody>
