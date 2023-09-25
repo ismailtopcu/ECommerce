@@ -20,7 +20,7 @@ namespace ECommerce.PresentationLayer.ViewComponents.AdminLayout
             string url = "https://localhost:7175/api/AdminMessage/GetAllMessagesForReceiver?userName=" + User.Identity.Name;
             var values = await _apiService.GetTableData<ResultMessageDto>(url);
             var nonReadMessages = values.Where(x => x.isReadForReceiver == false).ToList();
-            ViewBag.InboxCount = values.Count().ToString();
+            ViewBag.InboxCount = nonReadMessages.Count().ToString();
             
             //Kullanıcı bilgisi
             string urlForUser = "https://localhost:7175/api/Admin/GetOneAdmin/" + User.Identity.Name;
