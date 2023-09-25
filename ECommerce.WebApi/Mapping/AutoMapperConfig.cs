@@ -2,6 +2,7 @@
 using ECommerce.DtoLayer.Dtos.AccountDto;
 using ECommerce.DtoLayer.Dtos.Category;
 using ECommerce.DtoLayer.Dtos.Employee;
+using ECommerce.DtoLayer.Dtos.Messages;
 using ECommerce.DtoLayer.Dtos.Order;
 using ECommerce.DtoLayer.Dtos.OrderDetail;
 using ECommerce.DtoLayer.Dtos.Product;
@@ -37,7 +38,10 @@ namespace ECommerce.WebApi.Mapping
 			CreateMap<LoginUserDto, AppUser>().ReverseMap();
 			CreateMap<ResultUserDto, AppUser>().ReverseMap();
 
+            CreateMap<CreateMessageDto, Message>().ReverseMap();
+            CreateMap<ResultMessageDto, Message>().ReverseMap();
 
-		}
+
+        }
 	}
 }

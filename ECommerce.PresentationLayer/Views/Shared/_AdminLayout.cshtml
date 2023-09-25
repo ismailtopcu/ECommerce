@@ -19,6 +19,8 @@
 
         @await Html.PartialAsync("/Views/AdminLayout/NavHeaderPartial.cshtml")
 
+        @await Component.InvokeAsync("NavHeader")
+
         @await Html.PartialAsync("/Views/AdminLayout/SidebarPartial.cshtml")
 
         <div class="content-body">

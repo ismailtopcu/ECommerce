@@ -31,7 +31,10 @@ namespace ECommerce.BusinessLayer.DependencyResolves.Autofac
 			builder.RegisterType<EfEmployeeDal>().As<IEmployeeDal>().InstancePerLifetimeScope();
 			builder.RegisterType<EmployeeManager>().As<IEmployeeService>().InstancePerLifetimeScope();
 
+            builder.RegisterType<EfMessageDal>().As<IMessageDal>().InstancePerLifetimeScope();
+            builder.RegisterType<MessageManager>().As<IMessageService>().InstancePerLifetimeScope();
 
-		}
+
+        }
 	}
 }
