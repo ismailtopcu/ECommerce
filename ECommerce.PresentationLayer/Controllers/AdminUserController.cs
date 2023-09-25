@@ -96,7 +96,7 @@ namespace ECommerce.PresentationLayer.Controllers
         public async Task<IActionResult> EditAdmin()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7175/api/Admin/GetOneAdmin/" + "boralulebas");
+            var responseMessage = await client.GetAsync("https://localhost:7175/api/Admin/GetOneAdmin/" + User.Identity.Name);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

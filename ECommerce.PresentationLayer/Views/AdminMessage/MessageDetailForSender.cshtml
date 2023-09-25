@@ -1,0 +1,43 @@
+﻿@using ECommerce.DtoLayer.Dtos.Messages;
+@model ResultMessageDto
+
+@{
+    ViewData["Title"] = "MessageDetailForSender";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="email-left-box">
+    <div class="mail-list mt-4">
+        <a href="/adminpanel/messages/sendmessage" class="btn btn-primary btn-block">Mesaj Oluştur</a>
+        <a href="/adminpanel/messages/inbox" class="list-group-item border-0 text-primary p-r-0"><i class="fa fa-inbox font-18 align-middle mr-2"></i> Gelen Kutusu </a>
+        <a href="/adminpanel/messages/sendbox" class="list-group-item border-0 p-r-0"><i class="fa fa-paper-plane font-18 align-middle mr-2"></i> Giden Kutusu </a>
+    </div>
+</div>
+<div class="email-right-box">
+    <div class="toolbar" role="toolbar">
+        <div class="btn-group m-b-20">
+            <a href="adminpanel/messages/deletemessage/@Model.MessageId" class="btn btn-light">
+                <i class="fa fa-trash"></i>
+            </a>
+        </div>
+    </div>
+    <div class="read-content">
+        <div class="media pt-5">
+            <div class="media-body">
+                <h5 class="m-b-3">@Model.SenderUserName</h5>
+                <p class="m-b-2">@Model.Created.ToString("dd/MM/yy HH:mm:");</p>
+            </div>
+        </div>
+        <hr>
+        <div class="media mb-4 mt-1">
+            <div class="media-body">
+                <h4 class="m-0 text-primary">@Model.Subject</h4><small class="text-muted">Alıcı: @Model.ReceiverUserName</small>
+            </div>
+        </div>
+        <p>@Model.Body</p>
+        <hr>
+    </div>
+    <div class="text-right">
+        <a href="/adminpanel/messages/sendmessage/@Model.SenderUserName" class="btn btn-primaryw-md m-b-30">Cevap Yaz</a>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@using ECommerce.DtoLayer.Dtos.Messages;
+@model List<ResultMessageDto>
+
+@{
+    ViewData["Title"] = "Inbox";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="card-title">
+    <h4>Gelen Kutusu</h4>
+</div>
+<div class="email-left-box">
+    <div class="mail-list mt-4">
+        <a href="/adminpanel/messages/sendmessage" class="btn btn-primary btn-block">Mesaj Oluştur</a>
+        <a href="/adminpanel/messages/inbox" class="list-group-item border-0 text-primary p-r-0"><i class="fa fa-inbox font-18 align-middle mr-2"></i> <b>Gelen Kutusu</b> <span class="badge badge-primary badge-sm float-right m-t-5">@ViewBag.InboxCount</span> </a>
+        <a href="/adminpanel/messages/sendbox" class="list-group-item border-0 p-r-0"><i class="fa fa-paper-plane font-18 align-middle mr-2"></i>Giden Kutusu </a>
+    </div>
+</div>
+<div class="email-right-box">
+    <div class="email-list m-t-15">
+        @foreach (var item in Model)
+        {
+            <div class="message">
+                <a href="/adminpanel/messages/detail/@item.MessageId">
+                    <div class="col-mail col-mail-2">
+                        @if (item.isReadForReceiver == false)
+                        {
+                            <div class="subject"><b>@item.Subject</b></div>
+                        }
+                        else
+                        {
+                            <div class="subject">@item.Subject</div>
+                        }
+                        <div class="date">@item.Created.ToString("dd/MM/yy HH:mm:");</div>
+                    </div>
+                </a>
+                <a href="adminpanel/messages/deletemessage/@item.MessageId" class="btn btn-light">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </div>
+        }
+    </div>
+</div>

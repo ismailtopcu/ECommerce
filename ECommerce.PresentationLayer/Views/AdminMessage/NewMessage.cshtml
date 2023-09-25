@@ -1,0 +1,33 @@
+﻿@using ECommerce.DtoLayer.Dtos.Messages;
+@model CreateMessageDto
+
+@{
+    ViewData["Title"] = "NewMessage";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="email-left-box">
+    <div class="mail-list mt-4">
+        <a href="/adminpanel/messages/sendmessage" class="btn btn-primary btn-block">Mesaj Oluştur</a>
+        <a href="/adminpanel/messages/inbox" class="list-group-item border-0 text-primary p-r-0"><i class="fa fa-inbox font-18 align-middle mr-2"></i> Gelen Kutusu </a>
+        <a href="/adminpanel/messages/sendbox" class="list-group-item border-0 p-r-0"><i class="fa fa-paper-plane font-18 align-middle mr-2"></i> Giden Kutusu </a>
+    </div>
+</div>
+<div class="email-right-box">
+    <div class="compose-content mt-5">
+        <form method="post">
+            <div class="form-group">
+                <input type="text" asp-for="ReceiverUserName" class="form-control bg-transparent" placeholder=" Kime (Kullanıcı adı)">
+            </div>
+            <div class="form-group">
+                <input type="text" asp-for="Subject" class="form-control bg-transparent" placeholder=" Konu">
+            </div>
+            <div class="form-group">
+                <textarea class="textarea_editor form-control bg-light" asp-for="Body" rows="15" placeholder="Mesajınız ..."></textarea>
+            </div>
+            <div class="text-left m-t-15">
+                <button class="btn btn-primary m-b-30 m-t-15 f-s-14 p-l-20 p-r-20 m-r-10"><i class="fa fa-paper-plane m-r-5"></i> Gönder</button>
+            </div>
+        </form>
+    </div>
+</div>
