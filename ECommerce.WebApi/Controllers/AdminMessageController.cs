@@ -52,10 +52,11 @@ namespace ECommerce.WebApi.Controllers
             return Ok(message);
         }
 
-        [HttpPost("[action]")]
+        [HttpGet("[action]/{id},{forReceiver}")]
         public async Task<IActionResult> DeleteMessage(int id, bool forReceiver)
         {
             var message = await _messageService.TGetByIdAsync(id);
+            if (message == null) { return BadRequest(); }
             if (forReceiver == true) 
             { 
                 message.isDeletedforReceiver = true;

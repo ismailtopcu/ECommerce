@@ -8,12 +8,13 @@ namespace ECommerce.PresentationLayer.Controllers
     [Authorize(Policy = "AdminPolicy")]
     public class AdminMessageController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
         private readonly ApiService _apiService;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public AdminMessageController(ApiService apiService)
+        public AdminMessageController(ApiService apiService, IHttpClientFactory httpClientFactory)
         {
             _apiService = apiService;
+            _httpClientFactory = httpClientFactory;
         }
 
         [Route("adminpanel/messages/inbox")]
@@ -43,6 +44,8 @@ namespace ECommerce.PresentationLayer.Controllers
             {
                 CreateMessageDto messageDto = new CreateMessageDto();
                 messageDto.ReceiverUserName = userName;
+                return View(messageDto);
+
             }
             return View();
         }
@@ -51,6 +54,8 @@ namespace ECommerce.PresentationLayer.Controllers
         public async Task<IActionResult> NewMessage(CreateMessageDto createMessage) 
         {
             string url = "https://localhost:7175/api/AdminMessage";
+            createMessage.SenderUserName = User.Identity.Name;
+            createMessage.Created = DateTime.Now;
             await _apiService.AddData(url, createMessage);
             return RedirectToAction("SendBox");
         }
@@ -71,8 +76,41 @@ namespace ECommerce.PresentationLayer.Controllers
             return View(value);
         }
 
+        [Route("adminpanel/messages/deletemessage/{id}")]
+        public async Task<IActionResult> DeleteMessage(int id)
+        {
+            string url = "https://localhost:7175/api/AdminMessage/GetMessageByIdSender/" + id;
+            var value = await _apiService.GetData<ResultMessageDto>(url);
+            if (value.SenderUserName == User.Identity.Name)
+            {
+                string senderUrl = "https://localhost:7175/api/AdminMessage/DeleteMessage/" + id + ",false";
+                var client = _httpClientFactory.CreateClient();
+                var responseMessage = await client.GetAsync(senderUrl);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Inbox");
+                }
+            }
+
+            if (value.ReceiverUserName == User.Identity.Name) 
+            {
+                string receiverUrl = "https://localhost:7175/api/AdminMessage/DeleteMessage/" + id + ",true";
+                var client = _httpClientFactory.CreateClient();
+                var responseMessage = await client.GetAsync(receiverUrl);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Inbox");
+                }
+            }
+
+            return RedirectToAction("Inbox");
+
+        }
+
+
         public IActionResult SendMail() 
         {
+            
             return View();
         }
     }

@@ -1,11 +1,11 @@
 ﻿@using ECommerce.DtoLayer.Dtos.Messages;
 @model List<ResultMessageDto>
 
-    @{
+@{
     string imageUrl;
     if (ViewBag.UserImage == null) { imageUrl = "/adminweb/images/profile/emptyProfile.png"; }
     else { imageUrl = ViewBag.UserImage; }
-    }
+}
 
 <div class="header">
     <div class="header-content clearfix">
@@ -33,29 +33,33 @@
                 <li class="icons dropdown">
                     <a href="javascript:void(0)" data-toggle="dropdown">
                         <i class="mdi mdi-email-outline"></i>
-                        <span class="badge gradient-1 badge-pill badge-primary">3</span>
+                        <span class="badge gradient-1 badge-pill badge-primary">@ViewBag.InboxCount</span>
                     </a>
                     <div class="drop-down animated fadeIn dropdown-menu">
                         <div class="dropdown-content-heading d-flex justify-content-between">
-                            <span class="">3 Yeni Mesaj</span>
-
+                            @if (ViewBag.InboxCount == "0")
+                            {
+                                <span class="">Yeni Mesajınız Bulunmamakta</span>
+                            }
+                            else
+                            {
+                                <span class="">@ViewBag.InboxCount Yeni Mesaj</span>
+                            }
                         </div>
                         <div class="dropdown-content-body">
                             <ul>
-                                @foreach ( var item in Model)
+                                @foreach (var item in Model)
                                 {
-
-                                    TimeSpan timeSpan = DateTime.Now - item.Created;
-                                    string difference = timeSpan.TotalDays.ToString();
-                                   
-
                                     <li class="notification-unread">
-                                        <a href="javascript:void()">
-                                            <div class="notification-content">
-                                                <div class="notification-heading">@item.SenderUserName</div>
-                                                <div class="notification-timestamp">@difference gün önce</div>
-                                                <div class="notification-text">@item.Subject</div>
-                                            </div>
+                                        <a href="/adminpanel/messagedetail/@item.MessageId">
+                                            <a href="javascript:void()">
+                                                <img class="float-left mr-3 avatar-img" src="adminweb/images/media/newMessage.png" alt="">
+                                                <div class="notification-content">
+                                                    <div class="notification-heading">@item.SenderUserName</div>
+                                                    <div class="notification-timestamp">@item.Created.ToString("dd/MM/yy")</div>
+                                                    <div class="notification-text">@item.Subject</div>
+                                                </div>
+                                            </a>
                                         </a>
                                     </li>
                                 }
