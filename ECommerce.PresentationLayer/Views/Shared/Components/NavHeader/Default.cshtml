@@ -33,7 +33,10 @@
                 <li class="icons dropdown">
                     <a href="javascript:void(0)" data-toggle="dropdown">
                         <i class="mdi mdi-email-outline"></i>
-                        <span class="badge gradient-1 badge-pill badge-primary">@ViewBag.InboxCount</span>
+                        @if (ViewBag.InboxCount != "0")
+                        {
+                            <span class="badge gradient-1 badge-pill badge-primary">@ViewBag.InboxCount</span>
+                        }
                     </a>
                     <div class="drop-down animated fadeIn dropdown-menu">
                         <div class="dropdown-content-heading d-flex justify-content-between">
@@ -52,14 +55,12 @@
                                 {
                                     <li class="notification-unread">
                                         <a href="/adminpanel/messagedetail/@item.MessageId">
-                                            <a href="javascript:void()">
                                                 <img class="float-left mr-3 avatar-img" src="adminweb/images/media/newMessage.png" alt="">
                                                 <div class="notification-content">
                                                     <div class="notification-heading">@item.SenderUserName</div>
                                                     <div class="notification-timestamp">@item.Created.ToString("dd/MM/yy")</div>
                                                     <div class="notification-text">@item.Subject</div>
                                                 </div>
-                                            </a>
                                         </a>
                                     </li>
                                 }

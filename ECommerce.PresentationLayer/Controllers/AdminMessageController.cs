@@ -107,11 +107,19 @@ namespace ECommerce.PresentationLayer.Controllers
 
         }
 
-
-        public IActionResult SendMail() 
+        [Route("adminpanel/messages/sendemail")]
+        [HttpGet]
+        public IActionResult SendMail()
         {
-            
             return View();
+        }
+        [Route("adminpanel/messages/sendemail")]
+        [HttpPost]
+        public async Task<IActionResult> SendMail(CreateMailDto createMailDto) 
+        {
+            string url = "https://localhost:7175/api/AdminMessage/SendEmail";
+            await _apiService.AddData(url, createMailDto);
+            return RedirectToAction("Sendbox");
         }
     }
 }

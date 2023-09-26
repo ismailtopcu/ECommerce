@@ -12,12 +12,14 @@ namespace ECommerce.WebApi.Controllers
     public class AdminMessageController : ControllerBase
     {
         private readonly IMessageService _messageService;
+        private readonly IEmailSenderService _emailSenderService;
         private readonly IMapper _mapper;
 
-        public AdminMessageController(IMessageService MessageService, IMapper mapper)
+        public AdminMessageController(IMessageService MessageService, IMapper mapper, IEmailSenderService emailSenderService)
         {
             _messageService = MessageService;
             _mapper = mapper;
+            _emailSenderService = emailSenderService;
         }
 
         [HttpGet("[action]")]
@@ -78,6 +80,13 @@ namespace ECommerce.WebApi.Controllers
         {
             var value = _mapper.Map<Message>(createMessageDto);
             await _messageService.TInsertAsync(value);
+            return Ok();
+        }
+
+        [HttpPost("[action]")] 
+        public async  Task<IActionResult> SendEmail(CreateMailDto createMailDto) 
+        {
+            await _emailSenderService.SendEmailAsync(createMailDto);
             return Ok();
         }
 
