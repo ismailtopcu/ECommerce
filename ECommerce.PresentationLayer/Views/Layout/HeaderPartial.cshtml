@@ -5,7 +5,7 @@
 		<div class="top-bar">
 			<div class="content-topbar flex-sb-m h-full container">
 				<div class="left-top-bar">
-					100$ üzeri alışverişlerde kargo ücretsiz!
+					1000₺ üzeri alışverişlerde kargo ücretsiz!
 				</div>
 				<div class="right-top-bar flex-w h-full">
 					@if (User.Identity.Name != null)
@@ -19,14 +19,13 @@
 						<span class="flex-c-m trans-04 p-lr-25">
 							@User.Identity.Name
 						</span>
-						<a href="#" class="flex-c-m trans-04 p-lr-25">
+						<a href="/Home/Profile" class="flex-c-m trans-04 p-lr-25">
 							Profilim
 						</a>
 						<a href="#" class="flex-c-m trans-04 p-lr-25" onclick="logout();">
 							Çıkış Yap
 						</a>
 						<form id="logout-form" action="/Account/Logout" method="post" style="display: none;">
-							<!-- Çıkış işlemi için form -->
 						</form>
 					}
 					@if (User.Identity.Name == null)
@@ -56,12 +55,7 @@
 						</li>
 
 						<li>
-							<a href="product/index">Ürünler</a>
-						</li>
-
-						<li>
-							<a href="/category/index">Kategoriler</a>
-														
+							<a href="/product/index">Ürünler</a>
 						</li>
 
 						<li>

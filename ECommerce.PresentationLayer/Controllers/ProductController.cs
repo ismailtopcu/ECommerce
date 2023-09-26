@@ -1,4 +1,5 @@
 ﻿using ECommerce.DtoLayer.Dtos.Category;
+using ECommerce.DtoLayer.Dtos.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -6,11 +7,11 @@ using Newtonsoft.Json;
 namespace ECommerce.PresentationLayer.Controllers
 {
 	[AllowAnonymous]
-	public class CategoryController : Controller
+	public class ProductController : Controller
 	{
 		private readonly IHttpClientFactory _httpClientFactory;
 
-		public CategoryController(IHttpClientFactory httpClientFactory)
+		public ProductController(IHttpClientFactory httpClientFactory)
 		{
 			_httpClientFactory = httpClientFactory;
 		}
@@ -18,11 +19,11 @@ namespace ECommerce.PresentationLayer.Controllers
 		public async Task<IActionResult> Index()
 		{
 			var client = _httpClientFactory.CreateClient();
-			var responseMessage = await client.GetAsync("https://localhost:7175/api/Category/GetAllCategories");
+			var responseMessage = await client.GetAsync("https://localhost:7175/api/Product/GetAllProducts");
 			if(responseMessage.IsSuccessStatusCode)
 			{
 				var jsonData=await responseMessage.Content.ReadAsStringAsync();
-				var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
+				var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
 				return View(values);
 			}
 			return View();

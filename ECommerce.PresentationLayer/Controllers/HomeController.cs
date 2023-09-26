@@ -1,6 +1,14 @@
-﻿using ECommerce.PresentationLayer.Models;
+﻿using ECommerce.BusinessLayer.Concrete;
+using ECommerce.DataAccessLayer.Concrete;
+using ECommerce.DtoLayer.Dtos.AccountDto;
+using ECommerce.DtoLayer.Dtos.Category;
+using ECommerce.DtoLayer.Dtos.Product;
+using ECommerce.EntityLayer.Concrete;
+using ECommerce.PresentationLayer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace ECommerce.PresentationLayer.Controllers
@@ -9,20 +17,36 @@ namespace ECommerce.PresentationLayer.Controllers
 	public class HomeController : Controller
 	{
 		private readonly ILogger<HomeController> _logger;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly Context _context;
 
-		public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHttpClientFactory httpClientFactory, Context context)
+        {
+            _logger = logger;
+            _httpClientFactory = httpClientFactory;
+            _context = context;
+        }
+
+        public async Task< IActionResult> Index()
 		{
-			_logger = logger;
-		}
 
-		public IActionResult Index()
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync("https://localhost:7175/api/Product/GetAllProducts");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
+        public IActionResult ProductDetail()
 		{
 			return View();
-		}
-		public IActionResult ProductDetail()
+		}public IActionResult Profile()
 		{
-			return View();
-		}
+            return View();
+        }
 
 		public IActionResult Privacy()
 		{
