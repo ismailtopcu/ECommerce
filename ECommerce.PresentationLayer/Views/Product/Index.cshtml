@@ -1,5 +1,10 @@
-﻿@using ECommerce.DtoLayer.Dtos.Product;
-@model List<ResultProductDto>
+﻿@model List<ResultProductDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,27 +18,22 @@
         <div class="container">
             <div class="p-b-10">
                 <h3 class="ltext-103 cl5">
-                 
                 </h3>
             </div>
-
             <div class="flex-w flex-sb-m p-b-52">
-                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 active" data-filter="0">
-                    Tüm Ürünler
-                </button>
-                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="1" id="women-button">
+                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="1">
                     Kadın
                 </button>
-                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="2" id="men-button">
+                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="2">
                     Erkek
                 </button>
-                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="3" id="accessory-button">
+                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="3">
                     Aksesuar
-                </button> 
-                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="5" id="shoes-button">
+                </button>
+                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="5">
                     Ayakkabı
-                </button> 
-                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="4" id="baby-button">
+                </button>
+                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="4">
                     Bebek
                 </button>
 
@@ -65,15 +65,10 @@
                                         <img class="icon-heart2 dis-block trans-04 ab-t-l" src="~/cozastore-master/images/icons/icon-heart-02.png" alt="ICON">
                                     </a>
                                 </div>
-                                <button class="btn btn-primary" >Satın Al</button>
                             </div>
                         </div>
                     </div>
                 }
-               
-            </div>
-            <div id="pagination" class="text-center">
-
             </div>
         </div>
     </section>
@@ -100,57 +95,6 @@
             }
         }
     </script>
-    <script>
-        $(document).ready(function () {
-            $("#women").on("click", function () {
-                var targetHeight = $("#women-button").offset().top;
-                $("html, body").animate({
-                    scrollTop: targetHeight
-                }, 1000, function () {
-                    $("#women-button").trigger("click");
-                });
-            });
-        });
-        $(document).ready(function () {
-            $("#men").on("click", function () {
-                var targetHeight = $("#men-button").offset().top;
-                $("html, body").animate({
-                    scrollTop: targetHeight
-                }, 1000, function () {
-                    $("#men-button").trigger("click");
-                });
-            });
-        });
-        $(document).ready(function () {
-            $("#accessory").on("click", function () {
-                var targetHeight = $("#accessory-button").offset().top;
-                $("html, body").animate({
-                    scrollTop: targetHeight
-                }, 1000, function () {
-                    $("#accessory-button").trigger("click");
-                });
-            });
-        }); 
-        $(document).ready(function () {
-            $("#baby").on("click", function () {
-                var targetHeight = $("#baby-button").offset().top;
-                $("html, body").animate({
-                    scrollTop: targetHeight
-                }, 1000, function () {
-                    $("#baby-button").trigger("click");
-                });
-            });
-        });
-        $(document).ready(function () {
-            $("#shoes").on("click", function () {
-                var targetHeight = $("#shoes-button").offset().top;
-                $("html, body").animate({
-                    scrollTop: targetHeight
-                }, 1000, function () {
-                    $("#shoes-button").trigger("click");
-                });
-            });
-        });
-    </script>
+
 </body>
 </html>

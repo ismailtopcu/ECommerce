@@ -1,0 +1,27 @@
+﻿.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.product-item {
+    width: 100%;
+}
+.filter-button.active {
+    text-decoration: underline;
+}
+.filter-button:not(.active):hover {
+    text-decoration: underline;
+}
+.filter-button {
+    margin-right: 5px; 
+    margin-bottom: 5px; 
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.filter-button:hover {
+        background-color: #333;
+        color: #fff; 
+        border-color: #333; 
+    }
+

@@ -7,7 +7,7 @@
     @await Html.PartialAsync("/Views/Layout/HeaderPartial.cshtml")
 
     <!-- Cart -->
-    @await Html.PartialAsync("/Views/Layout/CartPartial.cshtml")
+    @await Component.InvokeAsync("CartComponent")
 
     <!-- Slider -->
     <!-- Banner -->
