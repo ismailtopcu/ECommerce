@@ -3,9 +3,19 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 15px;
 }
-
 .product-item {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.block2-txt-child1 {
+    flex: 1;
+}
+
+.block2-txt-child2 {
+    flex: 0;
+    margin-left: 10px; 
 }
 .filter-button.active {
     text-decoration: underline;
@@ -23,5 +33,51 @@
         background-color: #333;
         color: #fff; 
         border-color: #333; 
-    }
+ }
 
+.fill {
+    position: absolute;
+    //display:block;
+    height: 35px;
+    width: 145px;
+    margin: 5px 5px;
+    padding: 5px 5px;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: #383736;
+    border: 2px #383736 solid;
+    border-radius: 4px;
+    text-transform: uppercase;
+    outline: 0;
+    overflow: hidden;
+    background: none;
+    z-index: 1;
+    cursor: pointer;
+    transition: 0.08s ease-in;
+    -o-transition: 0.08s ease-in;
+    -ms-transition: 0.08s ease-in;
+    -moz-transition: 0.08s ease-in;
+    -webkit-transition: 0.08s ease-in;
+
+}
+
+.fill:hover {
+    color: whitesmoke;
+}
+
+.fill:before {
+    content: "";
+    position: absolute;
+    background: #383736;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: -1;
+    -webkit-transition: top 0.09s ease-in;
+}
+
+.fill:hover:before {
+    top: 0;
+}

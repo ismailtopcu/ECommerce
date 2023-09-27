@@ -40,10 +40,7 @@ namespace ECommerce.PresentationLayer.Controllers
             }
             return View();
         }
-        public IActionResult ProductDetail()
-		{
-			return View();
-		}public IActionResult Profile()
+       public IActionResult Profile()
 		{
             return View();
         }
