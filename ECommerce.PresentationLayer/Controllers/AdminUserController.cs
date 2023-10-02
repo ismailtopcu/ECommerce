@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
+using X.PagedList;
 
 namespace ECommerce.PresentationLayer.Controllers
 {
@@ -19,7 +20,7 @@ namespace ECommerce.PresentationLayer.Controllers
 
         //Üyeler sekmesi
         [Route("adminpanel/userlist")]
-        public async Task<IActionResult> UserList()
+        public async Task<IActionResult> UserList(int page = 1)
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7175/api/User/GetAllMembers");
@@ -27,7 +28,7 @@ namespace ECommerce.PresentationLayer.Controllers
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultUserDto>>(jsonData);
-                return View(values);
+                return View(values.ToPagedList(page,10));
             }
             return View();
         }

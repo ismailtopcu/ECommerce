@@ -59,6 +59,7 @@ namespace ECommerce.WebApi.Controllers
                 Email = createNewUserDto.Mail,
                 Name = createNewUserDto.Name,
                 Surname = createNewUserDto.Surname,
+                EmailConfirmed = true
             };
             var result = await _userManager.CreateAsync(user, createNewUserDto.Password);
             if (!result.Succeeded) { return BadRequest("Bir hata meydana geldi."); }

@@ -5,6 +5,7 @@ using ECommerce.PresentationLayer.Services;
 using ECommerce.PresentationLayer.ValidationRules.UserValidationRules;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IValidator<CreateNewUserDto>, CreateUserValidator>();
 
-builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
+builder.Services.AddIdentity<AppUser, AppRole>(opt=>
+{
+	opt.SignIn.RequireConfirmedEmail = true;
+    opt.User.RequireUniqueEmail = true;
+
+}).AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
 builder.Services.AddScoped<UserManager<AppUser>>();
 builder.Services.AddScoped<SignInManager<AppUser>>();
 builder.Services.AddScoped<ApiService>();
@@ -24,7 +30,6 @@ builder.Services.AddAuthorization(options =>
 {
 	options.AddPolicy("MemberPolicy", policy => policy.RequireRole("Member"));
 	options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
-
 });
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

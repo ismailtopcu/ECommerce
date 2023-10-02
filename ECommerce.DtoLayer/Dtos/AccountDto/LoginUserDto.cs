@@ -8,5 +8,6 @@ namespace ECommerce.DtoLayer.Dtos.AccountDto
 		public string Username { get; set; }
 		[Required(ErrorMessage = "Şifrenizi Giriniz")]
 		public string Password { get; set; }
+		public bool RememberMe { get; set; }
 	}
 }

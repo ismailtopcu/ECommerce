@@ -1,6 +1,6 @@
-﻿@model LoginUserDto
+﻿@model VerifyEmailDto
 @{
-    Layout = null;
+	Layout = null;
 }
 
 <!--
@@ -14,7 +14,7 @@
 <!-- Head -->
 
 <head>
-	<title>E-Commerce Giriş Yap</title>
+	<title>ModaMania Email Doğrulama</title>
 	<!-- Meta-Tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="utf-8">
@@ -52,41 +52,19 @@
 			<div class="content-w3ls">
 
 				<div class="content-bottom">
-					<form asp-action="Login" asp-controller="Account" method="post">
-						<div class="field-group">
-							<span class="fa fa-user" aria-hidden="true"></span>
-							<div class="wthree-field">
-								<input asp-for="Username" type="text" value="" placeholder="Kullanıcı Adı" required>
-							</div>
-						</div>
+					<form method="post">
 						<div class="field-group">
 							<span class="fa fa-lock" aria-hidden="true"></span>
 							<div class="wthree-field">
-								<input asp-for="Password" type="password"  required placeholder="Şifre">
+								<input asp-for="Code" type="text" required placeholder="Doğrulama Kodu">
 							</div>
 						</div>
 						<div class="wthree-field">
-							<button type="submit" class="btn">Giriş Yap</button>
+							<button type="submit" class="btn">Doğrula</button>
 						</div>
-						<ul class="list-login">
-							<li class="switch-agileits">
-								<label class="switch">
-									<input type="checkbox" asp-for="RememberMe">
-									<span class="slider round"></span>
-									Beni Hatırla
-								</label>
-							</li>
-							<li>
-								<a href="/Account/ForgotPassword" class="text-right">ŞİFRENİ Mİ UNUTTUN?</a>
-							</li>
-							<li class="clearfix"></li>
-						</ul>
 						<ul class="list-login-bottom">
 							<li class="">
-								<a href="/Account/Register" class="">HESAP OLUŞTUR</a>
-							</li>
-							<li class="">
-								<a href="#" class="text-right">Yardım?</a>
+								<a href="/Account/VerifyEmail" class="">Kodu Tekrar Gönder</a>
 							</li>
 							<li class="clearfix"></li>
 						</ul>

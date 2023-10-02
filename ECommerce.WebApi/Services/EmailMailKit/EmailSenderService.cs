@@ -1,13 +1,11 @@
-﻿using ECommerce.BusinessLayer.Abstract;
-using ECommerce.DtoLayer.Dtos.Messages;
+﻿using ECommerce.DtoLayer.Dtos.Messages;
 using MailKit.Net.Smtp;
-using Microsoft.AspNetCore.Identity;
 using MimeKit;
 
 
-namespace ECommerce.BusinessLayer.Concrete
+namespace ECommerce.WebApi.Services.EmailMailKit
 {
-    public class EmailSenderManager : IEmailSenderService
+    public class EmailSenderService : IEmailSenderService
     {
         public Task SendEmailAsync(CreateMailDto createMailDto)
         {
@@ -17,9 +15,8 @@ namespace ECommerce.BusinessLayer.Concrete
         MailboxAddress mailboxAddressTo = new MailboxAddress(createMailDto.To, createMailDto.Email);
         mimeMessage.To.Add(mailboxAddressTo);
         var bodyBuilder = new BodyBuilder();
-        Random rnd = new Random();
 
-        bodyBuilder.TextBody = createMailDto.Body;
+        bodyBuilder.HtmlBody = createMailDto.Body;
         mimeMessage.Body = bodyBuilder.ToMessageBody();
 
         mimeMessage.Subject = createMailDto.Subject;

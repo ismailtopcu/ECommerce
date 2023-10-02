@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
+using X.PagedList;
 
 namespace ECommerce.PresentationLayer.Controllers
 {
@@ -17,7 +18,7 @@ namespace ECommerce.PresentationLayer.Controllers
         }
 
         [Route("adminpanel/categorylist")]
-        public async Task<IActionResult> CategoryList()
+        public async Task<IActionResult> CategoryList(int page = 1)
         {
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7175/api/Category/GetAllCategories");
@@ -25,7 +26,7 @@ namespace ECommerce.PresentationLayer.Controllers
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
                 var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
-                return View(values);
+                return View(values.ToPagedList(page,15));
             }
             return View();
         }

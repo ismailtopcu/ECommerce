@@ -43,12 +43,28 @@ namespace ECommerce.PresentationLayer.Services
             return default(T);
         }
 
-        public async Task AddData(string apiUrl, object T) 
+        public async Task<bool> AddData(string apiUrl, object T) 
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(T);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            await client.PostAsync(apiUrl, content);
+            var result = await client.PostAsync(apiUrl, content);
+            if (result.IsSuccessStatusCode) 
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<bool> GetNoContent(string apiUrl)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var result = await client.GetAsync(apiUrl);
+            if (result.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            return false;
         }
 
     }
