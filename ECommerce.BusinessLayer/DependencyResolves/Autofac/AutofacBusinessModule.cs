@@ -34,7 +34,6 @@ namespace ECommerce.BusinessLayer.DependencyResolves.Autofac
             builder.RegisterType<EfMessageDal>().As<IMessageDal>().InstancePerLifetimeScope();
             builder.RegisterType<MessageManager>().As<IMessageService>().InstancePerLifetimeScope();
 
-            builder.RegisterType<EmailSenderManager>().As<IEmailSenderService>().InstancePerLifetimeScope();
 
 
 

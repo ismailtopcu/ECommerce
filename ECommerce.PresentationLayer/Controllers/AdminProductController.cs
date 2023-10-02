@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
+using X.PagedList;
 
 namespace ECommerce.PresentationLayer.Controllers
 {
@@ -17,7 +18,7 @@ namespace ECommerce.PresentationLayer.Controllers
 		}
 
 		[Route("adminpanel/productlist")]
-		public async Task<IActionResult> ProductList()
+		public async Task<IActionResult> ProductList(int page = 1)
 		{
 			var client = _httpClientFactory.CreateClient();
 			var responseMessage = await client.GetAsync("https://localhost:7175/api/Product/GetAllProducts");
@@ -25,7 +26,22 @@ namespace ECommerce.PresentationLayer.Controllers
 			{
 				var jsonData = await responseMessage.Content.ReadAsStringAsync();
 				var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
-				return View(values);
+				return View(values.ToPagedList(page,10));
+			}
+			return View();
+		}
+
+		[Route("adminpanel/searchedproducts/{searchedKey}")]
+		[HttpGet]
+		public async Task<IActionResult> SearchedProductList(string searchedKey, int page = 1)
+		{
+			var client = _httpClientFactory.CreateClient();
+			var responseMessage = await client.GetAsync("https://localhost:7175/api/Product/GetSearchedProducts/"+searchedKey);
+			if (responseMessage.IsSuccessStatusCode)
+			{
+				var jsonData = await responseMessage.Content.ReadAsStringAsync();
+				var values = JsonConvert.DeserializeObject<List<ResultProductDto>>(jsonData);
+				return View(values.ToPagedList(page, 10));
 			}
 			return View();
 		}

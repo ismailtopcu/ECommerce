@@ -1,5 +1,6 @@
 ﻿@using ECommerce.DtoLayer.Dtos.AccountDto;
-@model List<ResultUserDto>
+@using X.PagedList;
+@model IPagedList<ResultUserDto>
 @{
     ViewData["Title"] = "UserList";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -35,7 +36,11 @@
                 </tr>
             }
         </tbody>
-
     </table>
+    @Html.PagedListPager((IPagedList)Model,page=>Url.Action("UserList",new {page}),
+    new X.PagedList.Web.Common.PagedListRenderOptions {
+    LiElementClasses = new string[] { "page-item" },
+    PageClasses = new string[] { "page-link" }
+    })
 </div>
 

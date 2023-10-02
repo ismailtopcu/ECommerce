@@ -2,6 +2,7 @@
 using ECommerce.BusinessLayer.Abstract;
 using ECommerce.DtoLayer.Dtos.Messages;
 using ECommerce.EntityLayer.Concrete;
+using ECommerce.WebApi.Services.EmailMailKit;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

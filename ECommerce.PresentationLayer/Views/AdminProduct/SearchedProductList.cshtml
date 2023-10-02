@@ -2,9 +2,8 @@
 @using X.PagedList.Mvc.Common;
 @model IPagedList<ResultProductDto>
 @{
-	ViewData["Title"] = "ProductList";
+	ViewData["Title"] = "SearchedProductList";
 	Layout = "~/Views/Shared/_AdminLayout.cshtml";
-	int count = 0;
 }
 
 <div class="card-title">
@@ -28,9 +27,8 @@
 		<tbody>
 			@foreach (var item in Model)
 			{
-				count++;
 				<tr>
-					<th>@count</th>
+					<th>@item.Id</th>
 					<td>@item.Name </td>
 					<td>@item.Price</td>
 					<td>@item.Description</td>

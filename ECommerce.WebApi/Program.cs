@@ -7,8 +7,10 @@ using ECommerce.BusinessLayer.Concrete;
 using ECommerce.BusinessLayer.DependencyResolves.Autofac;
 using ECommerce.DataAccessLayer.Abstract;
 using ECommerce.DataAccessLayer.Concrete;
-using ECommerce.DataAccessLayer.EntityFramework;
 using ECommerce.EntityLayer.Concrete;
+using ECommerce.WebApi.Services.EmailMailKit;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,23 +18,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddDbContext<Context>();
-builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
 
+builder.Services.AddIdentity<AppUser, AppRole>(opt =>
+{
+    opt.SignIn.RequireConfirmedEmail = true;
+    opt.User.RequireUniqueEmail = true;
 
-//builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
-//builder.Services.AddScoped<ICategoryService, CategoryManager>();
+}).AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
 
-//builder.Services.AddScoped<IProductDal, EfProductDal>();
-//builder.Services.AddScoped<IProductService, ProductManager>();
+builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
 
-//builder.Services.AddScoped<IOrderDal, EfOrderDal>();
-//builder.Services.AddScoped<IOrderService, OrderManager>();
-
-//builder.Services.AddScoped<IOrderDetailDal, EfOrderDetailDal>();
-//builder.Services.AddScoped<IOrderDetailService, OrderDetailManager>();
-
-//builder.Services.AddScoped<IEmployeeDal, EfEmployeeDal>();
-//builder.Services.AddScoped<IEmployeeService, EmployeeManager>();
 
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder =>

@@ -8,5 +8,6 @@ namespace ECommerce.EntityLayer.Concrete
 		public string Surname { get; set; } = null!;
 		public string? City { get; set; } = null!;
 		public string? ImageUrl { get; set; }
+		public int? ConfirmCode { get; set; }
 	}
 }

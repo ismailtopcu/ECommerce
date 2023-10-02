@@ -56,5 +56,12 @@ namespace ECommerce.WebApi.Controllers
 			await _productService.TUpdateAsync(value);
 			return Ok();
 		}
+		[HttpGet("[action]")]
+		public async Task<IActionResult> GetSearchedProducts(string searchedKey)
+		{
+			var products = await _productService.TGetListAsync();
+			var searchedProducts = products.Where(x => x.Name.Contains(searchedKey)).ToList();
+			return Ok(searchedProducts);
+		}
 	}
 }
