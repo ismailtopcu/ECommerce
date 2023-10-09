@@ -1,5 +1,6 @@
 ﻿using ECommerce.DtoLayer.Dtos.AccountDto;
 using ECommerce.DtoLayer.Dtos.Roles;
+using ECommerce.EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -108,8 +109,30 @@ namespace ECommerce.PresentationLayer.Controllers
         }
         [HttpPost]
         [Route("adminpanel/settings/profile")]
-        public async Task<IActionResult> EditAdmin(UpdateUserDto updateUserDto)
+        public async Task<IActionResult> EditAdmin(UpdateUserDto updateUserDto, IFormFile ImageFile)
         {
+            if (ImageFile is { Length: > 0 })
+            {
+                var validImageTypes = new string[] { "image/jpeg", "image/png", "image/jpg" }; // Desteklenen resim türlerini burada belirtin
+
+                if (validImageTypes.Contains(ImageFile.ContentType))
+                {
+                    var randomImageName = updateUserDto.UserName + Guid.NewGuid() + Path.GetExtension(ImageFile.FileName);
+
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images", randomImageName);
+
+                    await using FileStream stream = new(path, FileMode.Create);
+
+                    await ImageFile.CopyToAsync(stream);
+                   
+                    updateUserDto.ImageUrl = "/images/"+randomImageName;
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Geçersiz dosya türü. Lütfen JPEG veya PNG formatında bir resim yükleyin.");
+                    return View(updateUserDto);
+                }
+            }
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateUserDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
