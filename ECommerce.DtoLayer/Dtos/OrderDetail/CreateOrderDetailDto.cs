@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace ECommerce.DtoLayer.Dtos.OrderDetail
 {
-	public record CreateOrderDetailDto(int ProductId, int Quantity, decimal UnitPrice);
+	public record CreateOrderDetailDto(int OrderId,int ProductId, int Quantity, decimal UnitPrice);
 }

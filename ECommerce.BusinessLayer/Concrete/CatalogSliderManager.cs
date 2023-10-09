@@ -4,6 +4,7 @@ using ECommerce.EntityLayer.Concrete.Catalog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -35,7 +36,12 @@ namespace ECommerce.BusinessLayer.Concrete
 			return values;
 		}
 
-		public async Task TInsertAsync(CatalogSlider t)
+        public async Task<List<CatalogSlider>> TGetListByFilter(Expression<Func<CatalogSlider, bool>> filter)
+        {
+            return await _catalogSliderDal.GetListByFilter(filter);
+        }
+
+        public async Task TInsertAsync(CatalogSlider t)
 		{
 			await _catalogSliderDal.InsertAsync(t);
 		}

@@ -1,6 +1,8 @@
 ﻿using ECommerce.BusinessLayer.Abstract;
 using ECommerce.DataAccessLayer.Abstract;
+using ECommerce.DataAccessLayer.EntityFramework;
 using ECommerce.EntityLayer.Concrete;
+using System.Linq.Expressions;
 
 namespace ECommerce.BusinessLayer.Concrete
 {
@@ -18,7 +20,8 @@ namespace ECommerce.BusinessLayer.Concrete
 			await _orderDetailDal.DeleteAsync(t);
 		}
 
-		public async Task<OrderDetail> TGetByIdAsync(int id)
+
+        public async Task<OrderDetail> TGetByIdAsync(int id)
 		{
 			return await _orderDetailDal.GetByIdAsync(id);
 		}
@@ -28,7 +31,13 @@ namespace ECommerce.BusinessLayer.Concrete
 			return await _orderDetailDal.GetListAsync();
 		}
 
-		public async Task TInsertAsync(OrderDetail t)
+        public async Task<List<OrderDetail>> TGetListByFilter(Expression<Func<OrderDetail, bool>> filter)
+        {
+            return await _orderDetailDal.GetListByFilter(filter);
+
+        }
+
+        public async Task TInsertAsync(OrderDetail t)
 		{
 			await _orderDetailDal.InsertAsync(t);
 		}

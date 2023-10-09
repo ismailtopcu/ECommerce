@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,5 +14,6 @@ namespace ECommerce.DataAccessLayer.Abstract
 		Task UpdateAsync(T t);
 		Task<T> GetByIdAsync(int id);
 		Task<List<T>> GetListAsync();
-	}
+		Task<List<T>> GetListByFilter(Expression<Func<T, bool>> filter);
+    }
 }

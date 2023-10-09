@@ -1,6 +1,8 @@
 ﻿using ECommerce.BusinessLayer.Abstract;
 using ECommerce.DataAccessLayer.Abstract;
+using ECommerce.DataAccessLayer.EntityFramework;
 using ECommerce.EntityLayer.Concrete;
+using System.Linq.Expressions;
 
 namespace ECommerce.BusinessLayer.Concrete
 {
@@ -30,7 +32,13 @@ namespace ECommerce.BusinessLayer.Concrete
 			return await _employeeDal.GetListAsync();
 		}
 
-		public async Task TInsertAsync(Employee t)
+        public async Task<List<Employee>> TGetListByFilter(Expression<Func<Employee, bool>> filter)
+        {
+            return await _employeeDal.GetListByFilter(filter);
+
+        }
+
+        public async Task TInsertAsync(Employee t)
 		{
 			await _employeeDal.InsertAsync(t);
 		}

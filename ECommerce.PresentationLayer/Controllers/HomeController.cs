@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace ECommerce.PresentationLayer.Controllers
 {
@@ -29,7 +30,6 @@ namespace ECommerce.PresentationLayer.Controllers
 
         public async Task< IActionResult> Index()
 		{
-
             var client = _httpClientFactory.CreateClient();
             var responseMessage = await client.GetAsync("https://localhost:7175/api/Product/GetAllProducts");
             if (responseMessage.IsSuccessStatusCode)

@@ -1,9 +1,11 @@
 ﻿using ECommerce.BusinessLayer.Abstract;
 using ECommerce.DataAccessLayer.Abstract;
+using ECommerce.DataAccessLayer.EntityFramework;
 using ECommerce.EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,6 +49,11 @@ namespace ECommerce.BusinessLayer.Concrete
         public async Task<List<Message>> TGetListAsync()
         {
             return await _MessageDal.GetListAsync();
+        }
+
+        public async Task<List<Message>> TGetListByFilter(Expression<Func<Message, bool>> filter)
+        {
+            return await _MessageDal.GetListByFilter(filter);
         }
 
         public async Task TInsertAsync(Message t)
