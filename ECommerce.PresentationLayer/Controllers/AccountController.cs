@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerce.DtoLayer.Dtos.AccountDto;
 using ECommerce.DtoLayer.Dtos.Messages;
+using ECommerce.DtoLayer.Dtos.Order;
 using ECommerce.EntityLayer.Concrete;
 using ECommerce.PresentationLayer.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -74,7 +75,13 @@ namespace ECommerce.PresentationLayer.Controllers
             if (result == true) 
             {
 				var user = await _userManager.FindByNameAsync(createNewUserDto.Username);
-				TempData["email"] = user.Email;
+                
+                string urlBasket = "https://localhost:7175/api/User/CreateOrder";
+                await _apiService.AddData(urlBasket, new CreateOrderDto() { UserId = user.Id });
+
+
+
+                TempData["email"] = user.Email;
 				return RedirectToAction("VerifyEmail", new { email = createNewUserDto.Mail }); 
             }
 
@@ -116,7 +123,11 @@ namespace ECommerce.PresentationLayer.Controllers
             verifyEmailDto.Email = TempData["email"].ToString();
             var result = await _apiService.AddData(url, verifyEmailDto);
 
-            if (result == true) { return RedirectToAction("Login"); }
+            if (result == true) 
+            {
+                
+                return RedirectToAction("Login"); 
+            }
             return View();
         }
 

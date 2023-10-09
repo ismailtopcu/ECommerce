@@ -19,7 +19,7 @@ namespace ECommerce.WebApi.Controllers
 
         //Admin bilgilerini çeker.
         [HttpGet("[action]")]
-        public async Task<IActionResult> GetAllAdminsAsync()
+        public async Task<IActionResult> GetAllAdmins()
         {
             var values = await _userManager.GetUsersInRoleAsync("Admin");
 
@@ -28,7 +28,7 @@ namespace ECommerce.WebApi.Controllers
 
         //Kullanıcı siler
         [HttpDelete("[action]/{userName}")]
-        public async Task<IActionResult> DeleteAdminAsync(string userName)
+        public async Task<IActionResult> DeleteAdmin(string userName)
         {
             var value = await _userManager.FindByNameAsync(userName);
             if (value == null) { return BadRequest("Kullanıcı bulunamadı."); }
@@ -39,7 +39,7 @@ namespace ECommerce.WebApi.Controllers
 
         //Sadece bir admin bilgilerini getirir.
         [HttpGet("[action]/{userName}")]
-        public async Task<IActionResult> GetOneAdminAsync(string userName)
+        public async Task<IActionResult> GetOneAdmin(string userName)
         {
             var value = await _userManager.FindByNameAsync(userName);
             if (value == null) { return BadRequest("Kullanıcı bulunamadı."); }
@@ -51,7 +51,7 @@ namespace ECommerce.WebApi.Controllers
 
         //Admin oluşturur.
         [HttpPost("[action]")]
-        public async Task<IActionResult> CreateAdminAsync(CreateNewUserDto createNewUserDto)
+        public async Task<IActionResult> CreateAdmin(CreateNewUserDto createNewUserDto)
         {
             var user = new AppUser
             {
@@ -72,7 +72,7 @@ namespace ECommerce.WebApi.Controllers
 
         //Kullanıcı günceller
         [HttpPut("[action]")]
-        public async Task<IActionResult> UpdateAdminAsync(UpdateUserDto updateUserDto)
+        public async Task<IActionResult> UpdateAdmin(UpdateUserDto updateUserDto)
         {
             var user = await _userManager.FindByNameAsync(updateUserDto.UserName);
 

@@ -7,5 +7,12 @@ using System.Threading.Tasks;
 
 namespace ECommerce.DtoLayer.Dtos.Order
 {
-	public record CreateOrderDto(int UserId, List<CreateOrderDetailDto> OrderDetails, DateTime OrderDate);
+	public class CreateOrderDto
+	{
+       public int UserId { get; set; }
+       public List<ResultOrderDetailDto>? OrderDetails { get; set; }
+       public DateTime? OrderDate { get; set; }
+
+
+    }
 }
