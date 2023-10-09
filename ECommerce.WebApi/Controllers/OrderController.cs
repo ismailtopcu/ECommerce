@@ -78,6 +78,12 @@ namespace ECommerce.WebApi.Controllers
             }
             value.TotalAmount = amount;
             await _orderService.TUpdateAsync(value);
+
+            CreateOrderDto orderDto = new CreateOrderDto()
+            {
+                UserId = value.UserId
+            };
+            await _orderService.TInsertAsync(_mapper.Map<Order>(orderDto));
             return Ok("Sipariş Oluşturuldu");
         }
     }

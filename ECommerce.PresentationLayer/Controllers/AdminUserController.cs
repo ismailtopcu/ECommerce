@@ -107,7 +107,7 @@ namespace ECommerce.PresentationLayer.Controllers
             return RedirectToAction("AdminList");
         }
         [HttpPost]
-        [Route("adminpanel/settings")]
+        [Route("adminpanel/settings/profile")]
         public async Task<IActionResult> EditAdmin(UpdateUserDto updateUserDto)
         {
             var client = _httpClientFactory.CreateClient();
@@ -116,7 +116,7 @@ namespace ECommerce.PresentationLayer.Controllers
             var responseMessage = await client.PutAsync("https://localhost:7175/api/Admin/UpdateAdmin", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
-                return RedirectToAction("AdminList");
+                return View();
             }
             return View();
         }
