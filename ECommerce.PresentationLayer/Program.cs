@@ -1,8 +1,14 @@
+using Autofac.Core;
+using ECommerce.BusinessLayer.Abstract;
+using ECommerce.BusinessLayer.Concrete;
+using ECommerce.DataAccessLayer.Abstract;
 using ECommerce.DataAccessLayer.Concrete;
+using ECommerce.DataAccessLayer.EntityFramework;
 using ECommerce.DtoLayer.Dtos.AccountDto;
 using ECommerce.EntityLayer.Concrete;
 using ECommerce.PresentationLayer.Services;
 using ECommerce.PresentationLayer.ValidationRules.UserValidationRules;
+using ECommerce.PresentationLayer.ViewComponents;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
@@ -24,8 +30,15 @@ builder.Services.AddIdentity<AppUser, AppRole>(opt=>
 builder.Services.AddScoped<UserManager<AppUser>>();
 builder.Services.AddScoped<SignInManager<AppUser>>();
 builder.Services.AddScoped<ApiService>();
+builder.Services.AddScoped<IBasketService,BasketManager>();
+builder.Services.AddScoped<IProductDal,EfProductDal>();
 builder.Services.AddDbContext<Context>();
 builder.Services.AddHttpClient();
+builder.Services.AddSession(opt =>
+{
+	opt.IdleTimeout = TimeSpan.FromDays(15);
+	opt.Cookie.HttpOnly = false;
+});
 
 
 builder.Services.AddSingleton(sp => new ConnectionFactory(){ Uri = new Uri(builder.Configuration.GetConnectionString("RabbitMQ")), DispatchConsumersAsync=true});
@@ -62,7 +75,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseStatusCodePagesWithReExecute("/ErrorPage/Error404", "?code={0}");
-
+app.UseSession();
 app.UseRouting();
 app.UseCookiePolicy();
 app.UseAuthentication();
