@@ -4,6 +4,7 @@ using ECommerce.DtoLayer.Dtos.Messages;
 using ECommerce.DtoLayer.Dtos.Order;
 using ECommerce.EntityLayer.Concrete;
 using ECommerce.PresentationLayer.Services;
+using ECommerce.PresentationLayer.Services.RabbitMQEvents;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -18,14 +19,16 @@ namespace ECommerce.PresentationLayer.Controllers
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IMapper _mapper;
         private readonly ApiService _apiService;
+        private readonly RabbitMqPublisher _rabbitMqPublisher;
 
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IMapper mapper, ApiService apiService)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IMapper mapper, ApiService apiService, RabbitMqPublisher rabbitMqPublisher)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mapper = mapper;
             _apiService = apiService;
+            _rabbitMqPublisher = rabbitMqPublisher;
         }
 
         [HttpGet]
@@ -125,8 +128,9 @@ namespace ECommerce.PresentationLayer.Controllers
 
             if (result == true) 
             {
-                
-                return RedirectToAction("Login"); 
+                var user = await _userManager.FindByEmailAsync(verifyEmailDto.Email);
+                _rabbitMqPublisher.Publish(new WelcomeMailCreatedEvent() { Email = user.Email, NameSurname = user.Name +" "+ user.Surname, UserName = user.UserName });
+                return RedirectToAction("Login");
             }
             return View();
         }

@@ -6,6 +6,7 @@ using ECommerce.PresentationLayer.ValidationRules.UserValidationRules;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using RabbitMQ.Client;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,6 +26,12 @@ builder.Services.AddScoped<SignInManager<AppUser>>();
 builder.Services.AddScoped<ApiService>();
 builder.Services.AddDbContext<Context>();
 builder.Services.AddHttpClient();
+
+
+builder.Services.AddSingleton(sp => new ConnectionFactory(){ Uri = new Uri(builder.Configuration.GetConnectionString("RabbitMQ")), DispatchConsumersAsync=true});
+builder.Services.AddSingleton<RabbitMqClientService>();
+builder.Services.AddSingleton<RabbitMqPublisher>();
+builder.Services.AddHostedService<RMQWelcomeMailBackgroundService>();
 
 builder.Services.AddAuthorization(options =>
 {
