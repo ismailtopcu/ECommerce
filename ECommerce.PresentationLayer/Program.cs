@@ -5,14 +5,19 @@ using ECommerce.DataAccessLayer.Abstract;
 using ECommerce.DataAccessLayer.Concrete;
 using ECommerce.DataAccessLayer.EntityFramework;
 using ECommerce.DtoLayer.Dtos.AccountDto;
+using ECommerce.DtoLayer.Dtos.Messages;
 using ECommerce.EntityLayer.Concrete;
 using ECommerce.PresentationLayer.Services;
+using ECommerce.PresentationLayer.Services.RabbitMQServices;
+using ECommerce.PresentationLayer.ValidationRules.MessageValidationRules;
 using ECommerce.PresentationLayer.ValidationRules.UserValidationRules;
 using ECommerce.PresentationLayer.ViewComponents;
 using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
+using System.Globalization;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -53,6 +58,10 @@ builder.Services.AddAuthorization(options =>
 });
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddScoped<IValidator<CreateMessageDto>, CreateMessageValidator>();
+
 
 //builder.Services.ConfigureApplicationCookie(options =>
 //{

@@ -53,11 +53,16 @@ namespace ECommerce.PresentationLayer.Controllers
         [HttpPost]
         public async Task<IActionResult> NewMessage(CreateMessageDto createMessage) 
         {
-            string url = "https://localhost:7175/api/AdminMessage";
-            createMessage.SenderUserName = User.Identity.Name;
-            createMessage.Created = DateTime.Now;
-            await _apiService.AddData(url, createMessage);
-            return RedirectToAction("SendBox");
+            if (ModelState.IsValid)
+            {
+                string url = "https://localhost:7175/api/AdminMessage";
+                createMessage.SenderUserName = User.Identity.Name;
+                createMessage.Created = DateTime.Now;
+                await _apiService.AddData(url, createMessage);
+                return RedirectToAction("SendBox");
+            }
+            return View(createMessage);
+
         }
 
         [Route("adminpanel/messages/detail/{id}")]
@@ -117,9 +122,14 @@ namespace ECommerce.PresentationLayer.Controllers
         [HttpPost]
         public async Task<IActionResult> SendMail(CreateMailDto createMailDto) 
         {
-            string url = "https://localhost:7175/api/AdminMessage/SendEmail";
-            await _apiService.AddData(url, createMailDto);
-            return RedirectToAction("Sendbox");
+            if (ModelState.IsValid) 
+            {
+                string url = "https://localhost:7175/api/AdminMessage/SendEmail";
+                await _apiService.AddData(url, createMailDto);
+                return RedirectToAction("Sendbox");
+            }
+            return View(createMailDto);
+
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Text;
 using System.Text.Json;
 using System.Web.Helpers;
 
-namespace ECommerce.PresentationLayer.Services
+namespace ECommerce.PresentationLayer.Services.RabbitMQServices
 {
     public class RMQWelcomeMailBackgroundService : BackgroundService
     {
