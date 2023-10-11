@@ -5,6 +5,7 @@ using ECommerce.DtoLayer.Dtos.Order;
 using ECommerce.EntityLayer.Concrete;
 using ECommerce.PresentationLayer.Services;
 using ECommerce.PresentationLayer.Services.RabbitMQEvents;
+using ECommerce.PresentationLayer.Services.RabbitMQServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -50,6 +51,7 @@ namespace ECommerce.PresentationLayer.Controllers
 				TempData["email"] = user.Email;
 				return RedirectToAction("VerifyEmail", new { email = user.Email });
             }
+            ModelState.AddModelError("", "Kullanıcı adı veya şifre hatalı");
             return View();
         }
 
@@ -64,6 +66,7 @@ namespace ECommerce.PresentationLayer.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError("", "Bilgilerinizi lütfen kontrol ediniz");
                 return View();
             }
 
@@ -132,6 +135,7 @@ namespace ECommerce.PresentationLayer.Controllers
                 _rabbitMqPublisher.Publish(new WelcomeMailCreatedEvent() { Email = user.Email, NameSurname = user.Name +" "+ user.Surname, UserName = user.UserName });
                 return RedirectToAction("Login");
             }
+            ModelState.AddModelError("", "Doğrulama kodu yanlış");
             return View();
         }
 
@@ -168,6 +172,7 @@ namespace ECommerce.PresentationLayer.Controllers
                 await _apiService.AddData(url, mailDto);
                 return RedirectToAction("ForgotPasswordWaitRoom");
             }
+            ModelState.AddModelError("", "Bu e-posta adresine kayıtlı bir kullanıcı bulunmamaktadır");
             return View();
         }
         [HttpGet]

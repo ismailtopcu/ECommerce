@@ -3,7 +3,7 @@ using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
 
-namespace ECommerce.PresentationLayer.Services
+namespace ECommerce.PresentationLayer.Services.RabbitMQServices
 {
     public class RabbitMqPublisher
     {

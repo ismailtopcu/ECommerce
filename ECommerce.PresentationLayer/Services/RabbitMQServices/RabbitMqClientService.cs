@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Connections;
 using RabbitMQ.Client;
 
-namespace ECommerce.PresentationLayer.Services
+namespace ECommerce.PresentationLayer.Services.RabbitMQServices
 {
     public class RabbitMqClientService
     {
