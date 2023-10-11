@@ -3,153 +3,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ModaMania</title>
-    <link rel="stylesheet" href="~/css/styles.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ModaMania</title>
+	<link rel="stylesheet" href="~/css/styles.css">
 </head>
 <body>
-    <section class="bg0 p-t-23 p-b-140">
-        <div class="container">
-            <div class="p-b-10">
-                <h3 class="ltext-103 cl5">
-                 
-                </h3>
-            </div>
+	<section class="bg0 p-t-23 p-b-140">
+		<div class="container">
+			<div class="p-b-10">
+				<h3 class="ltext-103 cl5">
+				</h3>
+			</div>
 
-            <div class="flex-w flex-sb-m p-b-52">
-                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 active" data-filter="0">
-                    Tüm Ürünler
-                </button>
-                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="1" id="women-button">
-                    Kadın
-                </button>
-                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="2" id="men-button">
-                    Erkek
-                </button>
-                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="3" id="accessory-button">
-                    Aksesuar
-                </button> 
-                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="5" id="shoes-button">
-                    Ayakkabı
-                </button> 
-                <button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="4" id="baby-button">
-                    Bebek
-                </button>
+			<div class="flex-w flex-sb-m p-b-52">
+				<button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 active" data-filter="0">
+					Tüm Ürünler
+				</button>
+				<button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="1" id="women-button">
+					Kadın
+				</button>
+				<button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="2" id="men-button">
+					Erkek
+				</button>
+				<button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="3" id="accessory-button">
+					Aksesuar
+				</button>
+				<button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="5" id="shoes-button">
+					Ayakkabı
+				</button>
+				<button class="filter-button stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter="4" id="baby-button">
+					Bebek
+				</button>
 
-            </div>
+			</div>
 
-            <div class="product-grid">
-                @foreach (var item in Model)
-                {
-                    <div class="product-item" data-category="@item.CategoryId">
-                        <div class="block2">
-                            <div class="block2-pic hov-img0">
-                                <a href="/Product/ProductDetail/@item.Id"><img src="@item.Image" alt="IMG-PRODUCT"></a>
-                               @* <a href=" /Product/ProductDetail/@item.Id" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                    Ürün Detayı
-                                </a>*@
-                            </div>
-                            <div class="block2-txt flex-w flex-t p-t-14">
-                                <div class="block2-txt-child1 flex-col-l">
-                                    <a href="/Product/ProductDetail/@item.Id" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                        @item.Name
-                                    </a>
-                                    <span class="stext-105 cl3">
-                                        @item.Price₺
-                                    </span>
-                                </div>
-                                <div class="block2-txt-child2 flex-r p-t-3">
-                                    <button href="/Cart/Index/" class="fill">
-                                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><path d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z" /></svg>
-                                        Sepete Ekle
-                                    </button>
-                                </div>
-                              
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-            <div id="pagination" class="text-center">
+			<div class="product-grid">
+				@foreach (var item in Model)
+				{
+					<div class="product-item" data-category="@item.CategoryId">
+						<div class="block2">
+							<div class="block2-pic hov-img0">
+								<a href="/Product/ProductDetail/@item.Id"><img src="@item.Image" alt="IMG-PRODUCT"></a>
+								@* <a href=" /Product/ProductDetail/@item.Id" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+							Ürün Detayı
+							</a>*@
+							</div>
+							<div class="block2-txt flex-w flex-t p-t-14">
+								<div class="block2-txt-child1 flex-col-l">
+									<a href="/Product/ProductDetail/@item.Id" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6 js-name-detail ">
+										@item.Name
+									</a>
+									<span class="stext-105 cl3">
+										@item.Price₺
+									</span>
+								</div>
+								<div class="block2-txt-child2 flex-r p-t-3">
+									<button onclick="addToCart(@item.Id)"  class="fill">
+										<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><path d="M528.12 301.319l47.273-208C578.806 78.301 567.391 64 551.99 64H159.208l-9.166-44.81C147.758 8.021 137.93 0 126.529 0H24C10.745 0 0 10.745 0 24v16c0 13.255 10.745 24 24 24h69.883l70.248 343.435C147.325 417.1 136 435.222 136 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-15.674-6.447-29.835-16.824-40h209.647C430.447 426.165 424 440.326 424 456c0 30.928 25.072 56 56 56s56-25.072 56-56c0-22.172-12.888-41.332-31.579-50.405l5.517-24.276c3.413-15.018-8.002-29.319-23.403-29.319H218.117l-6.545-32h293.145c11.206 0 20.92-7.754 23.403-18.681z" /></svg>
+										Sepete Ekle
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+			</div>
+			<div id="pagination" class="text-center">
+			</div>
+		</div>
+	</section>
 
-            </div>
-        </div>
-    </section>
- 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        filterProducts(0);
 
-        $(".filter-button").click(function () {
-            var category = parseInt($(this).data("filter"));
-            filterProducts(category);
 
-            $(".filter-button").removeClass("active");
 
-            $(this).addClass("active");
-        });
 
-        function filterProducts(categoryId) {
-            $(".product-item").hide();
-            if (categoryId === 0) {
-                $(".product-item").show();
-            } else {
-                $(".product-item[data-category='" + categoryId + "']").show();
-            }
-        }
-    </script>
-    <script>
-        $(document).ready(function () {
-            $("#women").on("click", function () {
-                var targetHeight = $("#women-button").offset().top;
-                $("html, body").animate({
-                    scrollTop: targetHeight
-                }, 1000, function () {
-                    $("#women-button").trigger("click");
-                });
-            });
-        });
-        $(document).ready(function () {
-            $("#men").on("click", function () {
-                var targetHeight = $("#men-button").offset().top;
-                $("html, body").animate({
-                    scrollTop: targetHeight
-                }, 1000, function () {
-                    $("#men-button").trigger("click");
-                });
-            });
-        });
-        $(document).ready(function () {
-            $("#accessory").on("click", function () {
-                var targetHeight = $("#accessory-button").offset().top;
-                $("html, body").animate({
-                    scrollTop: targetHeight
-                }, 1000, function () {
-                    $("#accessory-button").trigger("click");
-                });
-            });
-        }); 
-        $(document).ready(function () {
-            $("#baby").on("click", function () {
-                var targetHeight = $("#baby-button").offset().top;
-                $("html, body").animate({
-                    scrollTop: targetHeight
-                }, 1000, function () {
-                    $("#baby-button").trigger("click");
-                });
-            });
-        });
-        $(document).ready(function () {
-            $("#shoes").on("click", function () {
-                var targetHeight = $("#shoes-button").offset().top;
-                $("html, body").animate({
-                    scrollTop: targetHeight
-                }, 1000, function () {
-                    $("#shoes-button").trigger("click");
-                });
-            });
-        });
-    </script>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		filterProducts(0);
+
+		$(".filter-button").click(function () {
+			var category = parseInt($(this).data("filter"));
+			filterProducts(category);
+
+			$(".filter-button").removeClass("active");
+
+			$(this).addClass("active");
+		});
+
+		function filterProducts(categoryId) {
+			$(".product-item").hide();
+			if (categoryId === 0) {
+				$(".product-item").show();
+			} else {
+				$(".product-item[data-category='" + categoryId + "']").show();
+			}
+		}
+	</script>
+	<script>
+		$(document).ready(function () {
+			$("#women").on("click", function () {
+				var targetHeight = $("#women-button").offset().top;
+				$("html, body").animate({
+					scrollTop: targetHeight
+				}, 1000, function () {
+					$("#women-button").trigger("click");
+				});
+			});
+		});
+		$(document).ready(function () {
+			$("#men").on("click", function () {
+				var targetHeight = $("#men-button").offset().top;
+				$("html, body").animate({
+					scrollTop: targetHeight
+				}, 1000, function () {
+					$("#men-button").trigger("click");
+				});
+			});
+		});
+		$(document).ready(function () {
+			$("#accessory").on("click", function () {
+				var targetHeight = $("#accessory-button").offset().top;
+				$("html, body").animate({
+					scrollTop: targetHeight
+				}, 1000, function () {
+					$("#accessory-button").trigger("click");
+				});
+			});
+		});
+		$(document).ready(function () {
+			$("#baby").on("click", function () {
+				var targetHeight = $("#baby-button").offset().top;
+				$("html, body").animate({
+					scrollTop: targetHeight
+				}, 1000, function () {
+					$("#baby-button").trigger("click");
+				});
+			});
+		});
+		$(document).ready(function () {
+			$("#shoes").on("click", function () {
+				var targetHeight = $("#shoes-button").offset().top;
+				$("html, body").animate({
+					scrollTop: targetHeight
+				}, 1000, function () {
+					$("#shoes-button").trigger("click");
+				});
+			});
+		});
+	</script>
+	<script>
+		function addToCart(productId) {
+			var quantity = 1; // Varsayılan miktarı isteğinize göre ayarlayın
+			$.ajax({
+				url: '/Cart/AddToCart', // Ürünü eklemek için çağrılacak Action'ın URL'si
+				type: 'POST',
+				data: { productId: productId, quantity: quantity },
+				success: function (result) {
+					// Başarılı bir şekilde sepete eklendiğinde yapılacak işlemler
+					refreshCart();
+				},
+				error: function () {
+					// Hata durumunda yapılacak işlemler
+				}
+			});
+		}
+		
+	</script>
+
+
+
+
 </body>
 </html>
