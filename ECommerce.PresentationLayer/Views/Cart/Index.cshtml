@@ -27,16 +27,17 @@
 	<form class="bg0 p-t-75 p-b-85">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-30">
 					<div class="m-l-25 m-r--38 m-lr-0-xl">
 						<div class="wrap-table-shopping-cart">
 							<table class="table-shopping-cart">
 								<tr class="table_head">
 									<th class="column-1">Ürün</th>
-									<th class="column-2"></th>
+									<th class="column-1"></th>
 									<th class="column-3">Fiyat</th>
-									<th class="column-4">Adet</th>
-									<th class="column-5">Toplam</th>
+									<th class="column-1">Adet</th>
+									<th class="column-1">Arttır/Azalt</th>
+									<th class="column-1">Toplam</th>
 
 								</tr>
 
@@ -46,18 +47,18 @@
 									{
 										<tr class="table_row">
 											<td class="column-1">
-												<a href="/Cart/RemoveToCart/@item.Product.Id">
-													<div class="how-itemcart1 product-image" data-product-id="@item.Product.Id">
+												<a href="/product/productdetail/@item.Product.Id">
+													<div class="how-itemcart1">
 														<img src="@item.Product.Image" alt="IMG">
 													</div>
 												</a>
 											</td>
 											<td class="column-2">@item.Product.Name</td>
 											<td class="column-3">$ @item.Product.Price</td>
-											<td class="column-4">@item.Quantity</td>
-											<td class="column-5">$ @(item.Product.Price * item.Quantity)</td>
+											<td class="column-1">@item.Quantity</td>
+											<td class="column-5"><button  class="product-remove" data-product-id="@item.Product.Id"><img src="~/cozastore-master/images/icons/remove.png" /></button><button class="product-add" data-product-id="@item.Product.Id"><img src="~/cozastore-master/images/icons/add.png" /></button>  </td>
+											<td class="column-1">$ @(item.Product.Price * item.Quantity)</td>
 										</tr>
-
 									}
 								}
 								else
@@ -72,7 +73,7 @@
 					</div>
 				</div>
 
-				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+				<div class="col-sm-10 col-lg-7 col-xl-4 m-lr-auto m-b-30">
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
 						<h4 class="mtext-109 cl2 p-b-30">
 							Sepet Toplamı
@@ -124,20 +125,28 @@
 <script>
 	$(document).ready(function () {
 		// Tüm ürün resimlerine tıklama olayı ekleyin
-		$(".product-image").click(function () {
+		$(".product-remove").click(function () {
 			// Tıklanan ürünün product ID'sini alın
 			var productId = $(this).data("productId");
 
 			// Alınan product ID'sini bir Controller Action'a gönderin
-			sendProductIdToController(productId);
+			sendProductIdToRemoveController(productId);
 		});
+		$(".product-add").click(function () {
+			// Tıklanan ürünün product ID'sini alın
+			var productId = $(this).data("productId");
+
+			// Alınan product ID'sini bir Controller Action'a gönderin
+			sendProductIdToAddController(productId);
+		});
+
 	});
 
-	function sendProductIdToController(productId) {
+	function sendProductIdToRemoveController(productId) {
 		// Ürün ID'sini bir Controller Action'a göndermek için AJAX kullanabilirsiniz
 		$.ajax({
 			url: '/Cart/RemoveToCart', // Hedef Controller ve Action'ın adını buraya ekleyin
-			type: 'Get', // GET veya POST kullanabilirsiniz
+			type: 'post', // GET veya POST kullanabilirsiniz
 			data: { productId: productId }, // Controller'a gönderilecek veri
 			success: function (result) {
 				// Başarılı bir şekilde gönderildiğinde yapılacak işlemler
@@ -147,5 +156,23 @@
 			}
 		});
 	}
+	function sendProductIdToAddController(productId) {
+		var quantity = 1; // Varsayılan miktarı isteğinize göre ayarlayın
+		$.ajax({
+			url: '/Cart/AddCart', // Ürünü eklemek için çağrılacak Action'ın URL'si
+			type: 'post',
+			data: { productId: productId, quantity: quantity },
+			success: function (result) {
+				// Başarılı bir şekilde sepete eklendiğinde yapılacak işlemler
+			},
+			error: function () {
+				// Hata durumunda yapılacak işlemler
+			}
+		});
+	}
+
+
+
+
 </script>
 

@@ -23,7 +23,7 @@ namespace ECommerce.WebApi.Controllers
 		[HttpGet]
 		public async Task<IActionResult> GetAllProducts()
 		{
-			var products = await _productService.TGetListAsync();
+			var products = await _productService.TGetProductList();
 			return Ok(products);
 		}
 

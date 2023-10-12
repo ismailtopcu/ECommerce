@@ -75,5 +75,22 @@ namespace ECommerce.BusinessLayer.Concrete
 			}
 			return basket;
 		}
+		public BasketDto AddBasket(BasketDto basket, int productId)
+		{
+			var value = basket.BasketItems.Where(x=>x.Product.Id == productId).FirstOrDefault();
+			if (value != null)
+			{
+				if(value.Quantity>0)
+				{
+					value.Quantity += 1;					
+				}
+				else
+				{
+					basket.BasketItems.Add(value);
+				}
+			}
+			return basket;
+		}
+
 	}
 }

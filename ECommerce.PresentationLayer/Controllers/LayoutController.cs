@@ -16,16 +16,7 @@ namespace ECommerce.PresentationLayer.Controllers
 		{
 			return PartialView();
 		}
-		public PartialViewResult HeaderPartial()
-		{
-			var basketDto = HttpContext.Session.Get<BasketDto>("basket");
-
-			int basketItemCount = basketDto?.BasketItems?.Count ?? 0;
-
-			ViewData["BasketItemCount"] = basketItemCount;
-
-			return PartialView();
-		}
+		
 		public PartialViewResult CartPartial()
 		{
 			return PartialView();

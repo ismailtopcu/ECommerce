@@ -11,5 +11,6 @@ namespace ECommerce.BusinessLayer.Abstract
 	{
 		Task<BasketDto> AddToBasket(BasketDto basket, int productId, int quantity);
 		BasketDto RemoveToBasket(BasketDto basket, int productId);
+		BasketDto AddBasket(BasketDto basket, int productId);
 	}
 }

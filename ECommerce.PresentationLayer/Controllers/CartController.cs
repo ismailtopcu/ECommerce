@@ -54,6 +54,16 @@ namespace ECommerce.PresentationLayer.Controllers
 
 			return RedirectToAction("Index");
 		}
+		public  IActionResult AddCart(int productId)
+		{
+			var basketDto = HttpContext.Session.Get<BasketDto>("basket");
+
+			var basket =  _basketService.AddBasket(basketDto, productId);
+
+			HttpContext.Session.Set<BasketDto>("basket", basket);
+
+			return RedirectToAction("Index");
+		}
 		[HttpGet]
 		public IActionResult GetCartData()
 		{
