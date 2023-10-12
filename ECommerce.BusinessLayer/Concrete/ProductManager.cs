@@ -41,7 +41,12 @@ namespace ECommerce.BusinessLayer.Concrete
             return await _productDal.GetProductList();
         }
 
-        public async Task TInsertAsync(Product t)
+		public async Task<List<ResultProductDto>> TGetSearchedProductList(string searchTerm)
+		{
+			return await _productDal.GetSearchedProductList(searchTerm);
+		}
+
+		public async Task TInsertAsync(Product t)
 		{
 			await _productDal.InsertAsync(t);
 		}

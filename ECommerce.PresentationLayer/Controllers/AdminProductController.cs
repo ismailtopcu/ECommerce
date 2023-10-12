@@ -18,10 +18,10 @@ namespace ECommerce.PresentationLayer.Controllers
 		}
 
 		[Route("adminpanel/productlist")]
-		public async Task<IActionResult> ProductList(int page = 1)
+		public async Task<IActionResult> ProductList(string? searchTerm, int page = 1)
 		{
 			var client = _httpClientFactory.CreateClient();
-			var responseMessage = await client.GetAsync("https://localhost:7175/api/Product/GetAllProducts");
+			var responseMessage = await client.GetAsync("https://localhost:7175/api/Product/GetAllProducts?searchTerm="+searchTerm);
 			if (responseMessage.IsSuccessStatusCode)
 			{
 				var jsonData = await responseMessage.Content.ReadAsStringAsync();

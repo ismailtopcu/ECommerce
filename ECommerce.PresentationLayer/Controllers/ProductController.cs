@@ -3,6 +3,7 @@ using ECommerce.DtoLayer.Dtos.Product;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using X.PagedList;
 
 namespace ECommerce.PresentationLayer.Controllers
 {
@@ -16,10 +17,10 @@ namespace ECommerce.PresentationLayer.Controllers
 			_httpClientFactory = httpClientFactory;
 		}
 
-		public async Task<IActionResult> Index()
+		public async Task<IActionResult> Index(string searchTerm)
 		{
 			var client = _httpClientFactory.CreateClient();
-			var responseMessage = await client.GetAsync("https://localhost:7175/api/Product/GetAllProducts");
+			var responseMessage = await client.GetAsync("https://localhost:7175/api/Product/GetAllProducts?searchTerm="+searchTerm);
 			if(responseMessage.IsSuccessStatusCode)
 			{
 				var jsonData=await responseMessage.Content.ReadAsStringAsync();
@@ -39,6 +40,7 @@ namespace ECommerce.PresentationLayer.Controllers
 				return View(values);
 			}
 			return View();
-		}
-	}
+		}        
+        
+    }
 }

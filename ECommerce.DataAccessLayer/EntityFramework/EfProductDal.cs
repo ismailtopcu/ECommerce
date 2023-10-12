@@ -24,6 +24,28 @@ namespace ECommerce.DataAccessLayer.EntityFramework
 			var result = _mapper.Map<List<ResultProductDto>>(values);
 			return result;
 		}
+
+		public async Task<List<ResultProductDto>> GetSearchedProductList(string searchTerm)
+		{
+			var query = _context.Products.Include(x => x.Category).AsQueryable();
+			List<Product> products;
+
+			if (!string.IsNullOrEmpty(searchTerm))
+			{
+				products = await query.ToListAsync(); // Tüm ürünleri çekiyoruz
+				products = products
+					.Where(x => x.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+					.ToList(); // Ardından istemci tarafında filtreleme yapılıyor
+			}
+			else
+			{
+				products = await query.ToListAsync(); // Eğer searchTerm boşsa, tüm ürünleri çekiyoruz
+			}
+
+			var result = _mapper.Map<List<ResultProductDto>>(products);
+			return result;
+		}
+
 	}
 
 

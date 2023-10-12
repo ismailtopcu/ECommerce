@@ -6,5 +6,6 @@ namespace ECommerce.BusinessLayer.Abstract
 	public interface IProductService : IGenericService<Product>
 	{
         Task<List<ResultProductDto>> TGetProductList();
-    }
+		Task<List<ResultProductDto>> TGetSearchedProductList(string searchTerm);
+	}
 }
