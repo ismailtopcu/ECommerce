@@ -80,14 +80,7 @@ namespace ECommerce.PresentationLayer.Controllers
             var result = await _apiService.AddData(url, createNewUserDto);
             if (result == true) 
             {
-				var user = await _userManager.FindByNameAsync(createNewUserDto.Username);
-                
-                string urlBasket = "https://localhost:7175/api/User/CreateOrder";
-                await _apiService.AddData(urlBasket, new CreateOrderDto() { UserId = user.Id });
-
-
-
-                TempData["email"] = user.Email;
+                TempData["email"] = createNewUserDto.Mail;
 				return RedirectToAction("VerifyEmail", new { email = createNewUserDto.Mail }); 
             }
 

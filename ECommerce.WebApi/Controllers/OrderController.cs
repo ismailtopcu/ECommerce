@@ -65,10 +65,11 @@ namespace ECommerce.WebApi.Controllers
             await _orderService.TInsertAsync(_mapper.Map<Order>(createOrderDto));
             return Ok("Sepet Oluşturuldu");
         }
-        [HttpPost("[action]")]
+        [HttpGet("[action]")]
         public async Task<IActionResult> FinishOrder(int id)
         {
-            var value = await _orderService.TGetByIdAsync(id);
+            var list = await _orderService.TGetAllOrdersIncluded();
+            var value = list.Where(x => x.Id == id).FirstOrDefault();
             value.OrderDate = DateTime.Now;
             value.OrderFinished = true;
             decimal amount = 0;
@@ -78,12 +79,6 @@ namespace ECommerce.WebApi.Controllers
             }
             value.TotalAmount = amount;
             await _orderService.TUpdateAsync(value);
-
-            CreateOrderDto orderDto = new CreateOrderDto()
-            {
-                UserId = value.UserId
-            };
-            await _orderService.TInsertAsync(_mapper.Map<Order>(orderDto));
             return Ok("Sipariş Oluşturuldu");
         }
     }

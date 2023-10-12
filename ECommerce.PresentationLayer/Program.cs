@@ -25,6 +25,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IValidator<CreateNewUserDto>, CreateUserValidator>();
+builder.Services.AddTransient<IValidator<CreateMessageDto>, CreateMessageValidator>();
+
 
 builder.Services.AddIdentity<AppUser, AppRole>(opt=>
 {
@@ -59,8 +61,6 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddScoped<IValidator<CreateMessageDto>, CreateMessageValidator>();
 
 
 //builder.Services.ConfigureApplicationCookie(options =>
