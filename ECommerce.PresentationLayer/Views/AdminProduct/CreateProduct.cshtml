@@ -52,10 +52,10 @@
 
             <div class="form-group row">
                 <label class="col-lg-4 col-form-label" for="val-currency">
-                    Kategori <span class="text-danger">*</span>
+                    Ürün Kategori
                 </label>
                 <div class="col-lg-6">
-                    <input type="text" class="form-control" asp-for="CategoryId" placeholder="Kategori bilgisi giriniz..">
+                    <select class="form-control" id="CategoryIdSelect" name="CategoryId"></select>
                 </div>
             </div>
             <div class="form-group row">
@@ -66,4 +66,26 @@
         </form>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: "GET",
+            url: "https://localhost:7175/api/Category/GetAllCategories",
+            dataType: "json",
+            success: function (categories) {
 
+                var selectElement = $("#CategoryIdSelect");
+                $.each(categories, function (index, category) {
+                    selectElement.append($("<option>", {
+                        value: category.id,
+                        text: category.name
+                    }));
+                });
+            },
+            error: function () {
+                console.error("Kategoriler alınamadı.");
+            }
+        });
+    });
+</script>

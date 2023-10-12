@@ -1,9 +1,11 @@
-﻿using ECommerce.EntityLayer.Concrete;
+﻿using ECommerce.DtoLayer.Dtos.Product;
+using ECommerce.EntityLayer.Concrete;
 
 namespace ECommerce.DataAccessLayer.Abstract
 {
 	public interface IProductDal : IGenericDal<Product>
 	{
+		Task<List<ResultProductDto>> GetProductList();
 
 	}
 }

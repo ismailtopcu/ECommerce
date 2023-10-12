@@ -4,7 +4,8 @@
 <body class="animsition">
 
     <!-- Header -->
-    @await Html.PartialAsync("/Views/Layout/HeaderPartial.cshtml")
+    @await Component.InvokeAsync("Header")
+    
 
     <!-- Cart -->
     @await Component.InvokeAsync("CartComponent")

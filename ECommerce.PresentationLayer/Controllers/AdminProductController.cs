@@ -48,8 +48,9 @@ namespace ECommerce.PresentationLayer.Controllers
 
 		[Route("adminpanel/updateproduct/{id}")]
 		[HttpGet]
-		public async Task<IActionResult> UpdateProduct(int id)
+		public async Task<IActionResult> UpdateProduct(int id,int categoryId)
 		{
+			ViewBag.CurrentCategoryId= categoryId;
 			var client = _httpClientFactory.CreateClient();
 			var responseMessage = await client.GetAsync("https://localhost:7175/api/Product/GetProductById/" + id);
 			if (responseMessage.IsSuccessStatusCode)
