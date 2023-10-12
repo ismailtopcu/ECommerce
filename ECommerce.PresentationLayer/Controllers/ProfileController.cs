@@ -1,5 +1,6 @@
 ﻿using ECommerce.DataAccessLayer.Concrete;
 using ECommerce.DtoLayer.Dtos.AccountDto;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +22,7 @@ public class ProfileController : Controller
     public async Task<IActionResult> UserProfile()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7175/api/User/GetOneUser/" + User.Identity.Name); // Update the API endpoint accordingly
+            var responseMessage = await client.GetAsync("https://localhost:7175/api/User/GetUserById/" + User.Identity.GetUserId() ); // Update the API endpoint accordingly
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -35,8 +36,9 @@ public class ProfileController : Controller
         public async Task<IActionResult> EditUser()
         {
         var client = _httpClientFactory.CreateClient();
-        var responseMessage = await client.GetAsync("https://localhost:7175/api/User/GetOneUser/" + User.Identity.Name);
-        if (responseMessage.IsSuccessStatusCode)
+        var responseMessage = await client.GetAsync("https://localhost:7175/api/User/GetUserById/" + User.Identity.GetUserId() );
+
+		if (responseMessage.IsSuccessStatusCode)
         {
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var userDto = JsonConvert.DeserializeObject<UpdateUserDto>(jsonData);
@@ -81,12 +83,16 @@ public class ProfileController : Controller
                 user.Surname = userDto.Surname;
                 user.PhoneNumber = userDto.PhoneNumber;
                 user.City = userDto.City;
-                user.ImageUrl = userDto.ImageUrl;
+                user.ImageUrl = imageUrl;
                 dbContext.SaveChanges();
 
                 return RedirectToAction("UserProfile");
             }
-            user.ImageUrl = "/images/defaultuser.png";
+            user.Name = userDto.Name;
+            user.Surname = userDto.Surname;
+            user.PhoneNumber = userDto.PhoneNumber;
+            user.City = userDto.City;
+            dbContext.SaveChanges();
             return RedirectToAction("UserProfile");
         }
 

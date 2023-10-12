@@ -30,7 +30,7 @@ img{max-width:100%;}
 body {
 	background: #00c6d7;
 	background: linear-gradient(to right bottom, #85c446,rgba(133, 196, 70, 0.7),rgba(133, 196, 70, 0.31));
-	background: url('../images/b2.jpg')no-repeat 0px 0px;
+	background: url('')no-repeat 0px 0px;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;

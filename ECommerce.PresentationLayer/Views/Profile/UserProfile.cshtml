@@ -9,88 +9,99 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Velvety Sign In Form A Responsive Widget Template  :: w3layouts</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="keywords" content="Velvety Sign In Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
-	<link rel="stylesheet" href="~/velvety/web/css/flexslider.css" type="text/css" media="screen" /> <!-- Flexslider-CSS -->
-	<link href="/velvety/web/css/font-awesome.css" rel="stylesheet"><!-- Font-awesome-CSS -->
-	<link href="~/velvety/web/css/style.css" rel='stylesheet' type='text/css' /><!-- Stylesheet-CSS -->
-	<link href="//fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-	<link href="//fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700" rel="stylesheet">
-	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <title>Velvety Sign In Form A Responsive Widget Template  :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Velvety Sign In Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+    <link rel="stylesheet" href="~/velvety/web/css/flexslider.css" type="text/css" media="screen" /> <!-- Flexslider-CSS -->
+    <link href="/velvety/web/css/font-awesome.css" rel="stylesheet"><!-- Font-awesome-CSS -->
+    <link href="~/velvety/web/css/style.css" rel='stylesheet' type='text/css' /><!-- Stylesheet-CSS -->
+    <link href="//fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700" rel="stylesheet">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
-<body>
-	<h1>Profil Bilgilerim</h1>
-	<div class="main-agile">
-		<div class="alert-close"> </div>
-		<div class="content-wthree">
-			<div class="about-middle">
-				<section class="slider">
-					<div class="flexslider">
-						<ul class="slides">
-							<li>
-								<div class="banner-bottom-2">
-									<div class="about-midd-main">
-										<img class="agile-img" src="@Model.ImageUrl" alt=" " class="img-responsive">
-										<div class="info" >
-										<label class="mt-2">Adınız:</label>
-										<p>@Model.Name @Model.Surname</p>
-										 <label >E-posta Adresiniz:</label>
-										<p>@Model.Email</p>
-										<label for="phone">Telefon Numarası:</label>
-										<p>@Model.PhoneNumber"</p>	
-										<label for="city">Şehir:</label>
-										<p>@Model.City</p>
-										</div>
-									</div>
-								
-								</div>	
-								<form method="get" action="/Profile/EditUser">
-									<button type="submit" class="btn btn-primary mt-3">Profili Düzenle</button>
-								</form>
-							</li>
-						</ul>
-					</div>
-					<div class="clear"> </div>
-				</section>
-			</div>
-			<div class="new-account-form">
-				<h2 class="heading-w3-agile">Siparişlerim</h2>
-				<form action="#" method="post">
-				</form>
-			</div>
-			<div class="clear"> </div>
+<body class="profile_background">
+    <h1>Profil Bilgilerim</h1>
+    <div class="main-agile">
+        <div class="alert-close"> </div>
+        <div class="content-wthree">
+            <div class="about-middle">
+                <section class="slider">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <div class="banner-bottom-2">
+                                    <div class="about-midd-main">
+                                        @if (Model.ImageUrl == null)
+                                        {
+                                            <img class="agile-img img-responsive" src="~/images/defaultuser.png" alt="IMG">
+                                        }
+                                        <img class="agile-img img-responsive" src="@Model.ImageUrl" alt="IMG">
+                                        <div class="info">
+                                            <label class="mt-2">Adınız:</label>
+                                            <p>@Model.Name @Model.Surname</p>
+                                            <label>E-posta Adresiniz:</label>
+                                            <p>@Model.Email</p>
+                                            @if (Model.PhoneNumber != null)
+                                            {
+                                                <label for="phone">Telefon Numarası:</label>
+                                                <p>@Model.PhoneNumber</p>
+                                            }
+                                            @if (Model.City != null)
+                                            {
+                                                <label for="city">Şehir:</label>
+                                                <p>@Model.City</p>
+                                            }
 
-		</div>
-	</div>
-	
-	<script src="~/velvety/web/js/jquery.min.js"></script>
-	<script>
-		$(document).ready(function (c) {
-			$('.alert-close').on('click', function (c) {
-				$('.main-agile').fadeOut('slow', function (c) {
-					$('.main-agile').remove();
-				});
-			});
-		});
-	</script>
-	<!-- FlexSlider -->
-	<script defer src="~/velvety/web/js/jquery.flexslider.js"></script>
-	<script type="text/javascript">
-		$(function () {
+                                        </div>
+                                    </div>
 
-		});
-		$(window).load(function () {
-			$('.flexslider').flexslider({
-				animation: "slide",
-				start: function (slider) {
-					$('body').removeClass('loading');
-				}
-			});
-		});
-	</script>
-	<!-- FlexSlider -->
+                                </div>
+                                <form method="get" action="/Profile/EditUser">
+                                    <button type="submit" class="btn btn-primary mt-3">Profili Düzenle</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clear"> </div>
+                </section>
+            </div>
+            <div class="new-account-form">
+                <h2 class="heading-w3-agile">Siparişlerim</h2>
+                <form action="#" method="post">
+                </form>
+            </div>
+            <div class="clear"> </div>
+
+        </div>
+    </div>
+    <br /> <br />
+    <script src="~/velvety/web/js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function (c) {
+            $('.alert-close').on('click', function (c) {
+                $('.main-agile').fadeOut('slow', function (c) {
+                    $('.main-agile').remove();
+                });
+            });
+        });
+    </script>
+    <!-- FlexSlider -->
+    <script defer src="~/velvety/web/js/jquery.flexslider.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+        });
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>
+    <!-- FlexSlider -->
 
 </body>
 </html>
@@ -101,7 +112,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({}) 
+            body: JSON.stringify({})
         })
             .then(function (response) {
                 if (response.status === 200) {
@@ -116,11 +127,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     });
 </script>
 <style>
-	h1 {
-		margin-top: 10px; 
-	}
+    h1 {
+        margin-top: 10px;
+    }
 
-	.main-agile {
-		margin-top: 20px; 
-	}
+    .main-agile {
+        margin-top: 20px;
+    }
 </style>

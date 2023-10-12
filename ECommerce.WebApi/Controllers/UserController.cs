@@ -50,7 +50,12 @@ namespace ECommerce.WebApi.Controllers
 			if (isAdmin == true) { return BadRequest("Admin bilgisi çekilemez."); }
 			return Ok(value);
 		}
-
+		[HttpGet("[action]/{userId}")]
+		public async Task<IActionResult> GetUserById(int userId)
+		{
+			var value = await _userManager.FindByIdAsync(userId.ToString());
+			return Ok(value);
+		}
 
 		//Kullanıcı günceller
 		[HttpPut("[action]")]
@@ -140,10 +145,6 @@ namespace ECommerce.WebApi.Controllers
 			await _userManager.UpdateAsync(user);
 			return Ok();
 		}
-
-
-
-
 
         //Şifre resetler.
         [HttpPost("[action]")]
