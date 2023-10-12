@@ -4,4 +4,8 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-@await Component.InvokeAsync("UserProfile",new {userName = ViewBag.userName})
+<div class="row">
+    @await Component.InvokeAsync("UserProfile",new {userName = ViewBag.userName})
+
+    @await Component.InvokeAsync("_OrderDetailUser",new {userName = ViewBag.userName})
+</div>

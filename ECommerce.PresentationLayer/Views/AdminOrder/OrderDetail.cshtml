@@ -1,0 +1,27 @@
+﻿@using ECommerce.DtoLayer.Dtos.Order;
+@model ResultOrderDto
+
+@{
+    ViewData["Title"] = "OrderDetail";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="card-title">
+    <h4>Sipariş Detayı</h4>
+</div>
+<div class="card-body">
+    <p><strong>Sipariş ID:</strong> @Model.Id</p>
+    <p><strong>Sipariş Tarihi:</strong> @Model.OrderDate.Value.ToString("dd-MM-yyyy HH:mm")</p>
+    <p><strong>Müşteri Adı Soyadı:</strong> @ViewBag.User</p>
+    <p><strong>Müşteri E-Posta Adresi:</strong> @ViewBag.Email</p>
+    <br />
+
+    @await Component.InvokeAsync("_OrderDetail", new {id = Model.Id})
+
+    <br />
+    <h3><strong>Toplam Ücret:</strong> $@Model.TotalAmount</h3>
+</div>
+
+
