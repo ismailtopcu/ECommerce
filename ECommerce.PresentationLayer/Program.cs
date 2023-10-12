@@ -9,6 +9,7 @@ using ECommerce.DtoLayer.Dtos.Messages;
 using ECommerce.EntityLayer.Concrete;
 using ECommerce.PresentationLayer.Services;
 using ECommerce.PresentationLayer.Services.RabbitMQServices;
+using ECommerce.PresentationLayer.Utils.ConfigOptions;
 using ECommerce.PresentationLayer.ValidationRules.MessageValidationRules;
 using ECommerce.PresentationLayer.ValidationRules.UserValidationRules;
 using ECommerce.PresentationLayer.ViewComponents;
@@ -26,6 +27,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IValidator<CreateNewUserDto>, CreateUserValidator>();
 builder.Services.AddTransient<IValidator<CreateMessageDto>, CreateMessageValidator>();
+
+builder.Services.Configure<GCSConfigOptions>(builder.Configuration.GetSection("GCSConfigOptions"));
 
 
 builder.Services.AddIdentity<AppUser, AppRole>(opt=>
@@ -62,13 +65,6 @@ builder.Services.AddAuthorization(options =>
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
-
-//builder.Services.ConfigureApplicationCookie(options =>
-//{
-//	options.Cookie.HttpOnly = false;
-//	options.ExpireTimeSpan = TimeSpan.Zero;
-//	options.LoginPath = "Account/Login";
-//});
 
 var app = builder.Build();
 
