@@ -80,7 +80,7 @@ namespace ECommerce.BusinessLayer.Concrete
 			var value = basket.BasketItems.Where(x=>x.Product.Id == productId).FirstOrDefault();
 			if (value != null)
 			{
-				if(value.Quantity>1)
+				if(value.Quantity>0)
 				{
 					value.Quantity += 1;					
 				}
