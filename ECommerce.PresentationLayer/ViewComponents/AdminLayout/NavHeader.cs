@@ -25,7 +25,14 @@ namespace ECommerce.PresentationLayer.ViewComponents.AdminLayout
             //Kullanıcı bilgisi
             string urlForUser = "https://localhost:7175/api/Admin/GetOneAdmin/" + User.Identity.Name;
             var user = await _apiService.GetData<ResultUserDto>(urlForUser);
-            ViewBag.UserImage = user.ImageUrl;
+            if (!string.IsNullOrEmpty(user.ImageUrl))
+            {
+                ViewBag.UserImage = user.ImageUrl;
+            }
+            else
+            {
+                ViewBag.UserImage = "https://upload.wikimedia.org/wikipedia/commons/2/2c/Default_pfp.svg"; 
+            }
 
 
             return View(nonReadMessages);

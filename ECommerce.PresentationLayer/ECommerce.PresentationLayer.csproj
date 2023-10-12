@@ -37,8 +37,4 @@
     <ProjectReference Include="..\ECommerce.EntityLayer\ECommerce.EntityLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-  </ItemGroup>
-
 </Project>
