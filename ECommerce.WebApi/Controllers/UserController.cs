@@ -50,10 +50,17 @@ namespace ECommerce.WebApi.Controllers
 			if (isAdmin == true) { return BadRequest("Admin bilgisi çekilemez."); }
 			return Ok(value);
 		}
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetOneUserByIdAsync(int id)
+        {
+			var value = await _userManager.FindByIdAsync(id.ToString());
+            if (value == null) { return BadRequest("Kullanıcı bulunamadı."); }
+            return Ok(value);
+        }
 
 
-		//Kullanıcı günceller
-		[HttpPut("[action]")]
+        //Kullanıcı günceller
+        [HttpPut("[action]")]
 		public async Task<IActionResult> UpdateUserAsync(UpdateUserDto updateUserDto)
 		{
 			var user = await _userManager.FindByNameAsync(updateUserDto.UserName);

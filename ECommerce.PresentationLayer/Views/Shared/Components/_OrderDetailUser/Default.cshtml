@@ -1,0 +1,36 @@
+﻿@using ECommerce.DtoLayer.Dtos.Order;
+@model List<ResultOrderDto>
+
+@if( Model != null)
+{
+    <div class="col-lg-8 col-xl-9">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Sipariş Tarihi</th>
+                        <th>Detay</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th>@item.Id</th>
+                            <td>@item.OrderDate </td>
+                            <td><a href="/adminpanel/orders/orderdetail/@item.Id" class="btn btn-warning">Detay</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+@if(Model == null)
+{
+    <div class="col-lg-8 col-xl-9">
+        <h5>Üyenin henüz alışverişi bulunmamakta</h5>
+    </div>
+}
+

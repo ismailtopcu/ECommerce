@@ -80,7 +80,9 @@ namespace ECommerce.PresentationLayer.Controllers
             var result = await _apiService.GetNoContent(urlForOrderFinish);
 			if (result == true)
 			{
-				return RedirectToAction("Index","Home");
+				BasketDto basketDtoNew = new();
+                HttpContext.Session.Set<BasketDto>("basket", basketDtoNew);
+                return RedirectToAction("Index","Home");
 			}
             ModelState.AddModelError("", "Sistemde bir hata meydana geldi.");
             return RedirectToAction("Index");
