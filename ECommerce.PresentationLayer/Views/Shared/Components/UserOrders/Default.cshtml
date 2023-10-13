@@ -1,15 +1,17 @@
 ﻿@using ECommerce.DtoLayer.Dtos.Order;
+@using System.Globalization;
 @model List<ResultOrderDto>
 
 @if (Model.Count != 0)
 {
-    <div  style="float:right">
+    <div style="float:right">
         <div class="table-responsive">
             <table class="table table-borderless">
                 <thead>
                     <tr>
-                        <th style ="color:white">Sipariş Numarası</th>
-                        <th style ="color:white">Sipariş Tarihi</th>
+                        <th style="color:white">No</th>
+                        <th style="color:white">Tutar</th>
+                        <th style="color:white">Sipariş Tarihi</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -18,7 +20,8 @@
                     {
                         <tr>
                             <th style="color:white">@item.Id</th>
-                            <td style="color:white">@item.OrderDate </td>
+                            <th style="color:white">@item.TotalAmount</th>
+                            <td style="color:white">@item.OrderDate</td>
                             <td><a href="/Profile/UserOrderDetails/@item.Id" class="btn btn-warning btn-xs">Detay</a></td>
                         </tr>
                     }
@@ -33,4 +36,3 @@ else
         <h5>Henüz siparişiniz bulunmamakta</h5>
     </div>
 }
-
