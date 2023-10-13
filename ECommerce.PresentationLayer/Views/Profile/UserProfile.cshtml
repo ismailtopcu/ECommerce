@@ -21,9 +21,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
 <body class="profile_background">
-    <h1>Profil Bilgilerim</h1>
+    <h1>PROFİL BİLGİLERİM</h1>
     <div class="main-agile">
-        <div class="alert-close"> </div>
         <div class="content-wthree">
             <div class="about-middle">
                 <section class="slider">
@@ -67,9 +66,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </section>
             </div>
             <div class="new-account-form">
-                <h2 class="heading-w3-agile">Siparişlerim</h2>
-                <form action="#" method="post">
-                </form>
+                <h2 class="heading-w3-agile">SİPARİŞLERİM</h2>
+                @await Component.InvokeAsync("UserOrders", new {userName = Model.UserName})
+
             </div>
             <div class="clear"> </div>
 

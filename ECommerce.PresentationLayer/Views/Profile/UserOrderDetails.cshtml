@@ -1,0 +1,41 @@
+﻿@using ECommerce.DtoLayer.Dtos.Order;
+@model ResultOrderDto
+
+@{
+    ViewData["Title"] = "UserOrderDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Sipariş Detayı</h4>
+                </div>
+                <div class="card-body">
+                    <p><strong>Sipariş ID:</strong> @Model.Id</p>
+                    <p><strong>Sipariş Tarihi:</strong> @Model.OrderDate.Value.ToString("dd-MM-yyyy HH:mm")</p>
+                    <p><strong>Müşteri Adı Soyadı:</strong> @ViewBag.User</p>
+                    <p><strong>Müşteri E-Posta Adresi:</strong> @ViewBag.Email</p>
+
+                    <br />
+
+                    <h5>Ürünler:</h5>
+                    @await Component.InvokeAsync("OrderDetailForUser", new {id = Model.Id})
+
+                    <h5>Toplam Ücret: $@Model.TotalAmount</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

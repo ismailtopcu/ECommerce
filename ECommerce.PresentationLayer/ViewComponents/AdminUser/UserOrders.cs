@@ -1,31 +1,28 @@
 ﻿using ECommerce.DtoLayer.Dtos.AccountDto;
+using ECommerce.DtoLayer.Dtos.Order;
+using ECommerce.PresentationLayer.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http;
 
 namespace ECommerce.PresentationLayer.ViewComponents.AdminUser
 {
-    public class UserOrders 
+    public class UserOrders : ViewComponent
     {
-        //private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ApiService _apiService;
 
-        //public UserOrders(IHttpClientFactory httpClientFactory)
-        //{
-        //    _httpClientFactory = httpClientFactory;
-        //}
+        public UserOrders(ApiService apiService)
+        {
+            _apiService = apiService;
+        }
 
-        //public async Task<IViewComponentResult> Invoke(string userName)
-        //{
+        public async Task<IViewComponentResult> InvokeAsync(string userName)
+        {
+            var user = await _apiService.GetData<ResultUserDto>("https://localhost:7175/api/User/GetOneUser/" + userName);
 
-        //    var client = _httpClientFactory.CreateClient();
-        //    var responseMessage = await client.GetAsync("https://localhost:7175/api/User/GetOneUser/" + userName);
-        //    if (responseMessage.IsSuccessStatusCode)
-        //    {
-        //        var jsonData = await responseMessage.Content.ReadAsStringAsync();
-        //        var values = JsonConvert.DeserializeObject<ResultUserDetailDto>(jsonData);
-        //        return View(values);
-        //    }
-        //    return View();
-        //}
+            var values = await _apiService.GetTableData<ResultOrderDto>("https://localhost:7175/api/Order/");
+            var userOrders = values.Where(x => x.UserId == user.Id).ToList();
+            return View(userOrders);
+        }
     }
 }
