@@ -39,7 +39,7 @@ builder.Services.AddIdentity<AppUser, AppRole>(opt=>
 }).AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
 builder.Services.AddScoped<UserManager<AppUser>>();
 builder.Services.AddScoped<SignInManager<AppUser>>();
-builder.Services.AddScoped<IApiService,ApiService>();
+builder.Services.AddScoped<IApiService, ApiService>();
 builder.Services.AddScoped<IBasketService,BasketManager>();
 builder.Services.AddScoped<IProductDal,EfProductDal>();
 builder.Services.AddDbContext<Context>();

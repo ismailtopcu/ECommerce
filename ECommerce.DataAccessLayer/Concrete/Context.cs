@@ -33,5 +33,6 @@ namespace ECommerce.DataAccessLayer.Concrete
 		public DbSet<OrderDetail> OrderDetails { get; set; }
 		public DbSet<CatalogSlider> CatalogSliders { get; set; }
 		public DbSet<Message> Messages { get; set; }
+		public DbSet<Comment> Comments { get; set; }
 	}
 }

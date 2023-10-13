@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerce.DtoLayer.Dtos.AccountDto;
 using ECommerce.DtoLayer.Dtos.Category;
+using ECommerce.DtoLayer.Dtos.Comment;
 using ECommerce.DtoLayer.Dtos.Employee;
 using ECommerce.DtoLayer.Dtos.Messages;
 using ECommerce.DtoLayer.Dtos.Order;
@@ -40,6 +41,11 @@ namespace ECommerce.WebApi.Mapping
 
             CreateMap<CreateMessageDto, Message>().ReverseMap();
             CreateMap<ResultMessageDto, Message>().ReverseMap();
+
+            CreateMap<CreateCommentDto, Comment>().ReverseMap();
+            CreateMap<ResultCommentDto, Comment>().ReverseMap();
+
+
 
 
         }
