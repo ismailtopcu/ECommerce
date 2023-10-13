@@ -5,48 +5,146 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="card">
-    <div class="card-header">
-        <h4 class="card-title">Profili Düzenle</h4>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Velvety Sign In Form A Responsive Widget Template  :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Velvety Sign In Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
+    <link rel="stylesheet" href="~/velvety/web/css/flexslider.css" type="text/css" media="screen" /> <!-- Flexslider-CSS -->
+    <link href="/velvety/web/css/font-awesome.css" rel="stylesheet"><!-- Font-awesome-CSS -->
+    <link href="~/velvety/web/css/style.css" rel='stylesheet' type='text/css' /><!-- Stylesheet-CSS -->
+    <link href="//fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700" rel="stylesheet">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+</head>
+<body class="profile_background">
+    <h1>Profil Bilgilerim</h1>
+    <div class="main-agile">
+        <div class="alert-close"> </div>
+        <div class="content-wthree">
+            <div>
+                <section class="slider">
+                    <div class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <div>
+                                    <div class="about-midd-main">
+
+                                        <div class="info col-md-6">
+                                            <form asp-action="EditUser" method="post" enctype="multipart/form-data">
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                                <div class="form-group">
+                                                    <label asp-for="UserName">Kullanıcı Adı <span class="text-danger">*</span></label>
+                                                    <input placeholder="@Model.UserName" asp-for="UserName" class="form-control" readonly />
+                                                    <input asp-for="Id" type="hidden" />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label asp-for="Name">İsim <span class="text-danger">*</span></label>
+                                                    <input asp-for="Name" class="form-control" placeholder="İsim giriniz.." required/>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label asp-for="Surname">Soyisim <span class="text-danger">*</span></label>
+                                                    <input asp-for="Surname" class="form-control" placeholder="Soyisim giriniz.." required />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label asp-for="City">Şehir</label>
+                                                    <input asp-for="City" class="form-control" placeholder="Şehir giriniz.." required />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label asp-for="PhoneNumber">Telefon</label>
+                                                    <input asp-for="PhoneNumber" class="form-control" placeholder="+90" required />
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="ImageFile">Resim Yükle</label>
+                                                    <input type="file" name="ImageFile" id="ImageFile" class="form-control">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="clear"> </div>
+                </section>
+            </div>
+
+            <div class="clear"> </div>
+
+        </div>
     </div>
-    <div class="card-body">
-        <form asp-action="EditUser" method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <br />
+    <br />
+    <script src="~/velvety/web/js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function (c) {
+            $('.alert-close').on('click', function (c) {
+                $('.main-agile').fadeOut('slow', function (c) {
+                    $('.main-agile').remove();
+                });
+            });
+        });
+    </script>
+    <!-- FlexSlider -->
+    <script defer src="~/velvety/web/js/jquery.flexslider.js"></script>
+    <script type="text/javascript">
+        $(function () {
 
-            <div class="form-group">
-                <label asp-for="UserName">Kullanıcı Adı <span class="text-danger">*</span></label>
-                <input placeholder="@Model.UserName" asp-for="UserName" class="form-control" readonly />
-                <input asp-for="Id" type="hidden" />
-            </div>
+        });
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>
+    <!-- FlexSlider -->
 
-            <div class="form-group">
-                <label asp-for="Name">İsim <span class="text-danger">*</span></label>
-                <input asp-for="Name" class="form-control" placeholder="İsim giriniz.." />
-            </div>
+</body>
+</html>
+<script>
+    document.getElementById("logout").addEventListener("click", function () {
+        fetch('/Account/Logout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        })
+            .then(function (response) {
+                if (response.status === 200) {
+                    window.location.href = "/Account/Login";
+                } else {
+                    console.error('Çıkış yapma hatası');
+                }
+            })
+            .catch(function (error) {
+                console.error('Çıkış yapma hatası', error);
+            });
+    });
+</script>
+<style>
+    h1 {
+        margin-top: 10px;
+    }
 
-            <div class="form-group">
-                <label asp-for="Surname">Soyisim <span class="text-danger">*</span></label>
-                <input asp-for="Surname" class="form-control" placeholder="Soyisim giriniz.." />
-            </div>
-
-            <div class="form-group">
-                <label asp-for="City">Şehir</label>
-                <input asp-for="City" class="form-control" placeholder="Şehir giriniz.." />
-            </div>
-
-            <div class="form-group">
-                <label asp-for="PhoneNumber">Telefon</label>
-                <input asp-for="PhoneNumber" class="form-control" placeholder="+90" />
-            </div>
-
-                <div class="form-group">
-                    <label for="ImageFile">Resim Yükle</label>
-                    <input type="file" name="ImageFile" id="ImageFile" class="form-control">
-                </div>
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Kaydet</button>
-            </div>
-        </form>
-    </div>
-</div>
+    .main-agile {
+        margin-top: 20px;
+    }
+</style>

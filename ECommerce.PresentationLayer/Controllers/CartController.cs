@@ -82,7 +82,7 @@ namespace ECommerce.PresentationLayer.Controllers
 			{
 				BasketDto basketDtoNew = new();
                 HttpContext.Session.Set<BasketDto>("basket", basketDtoNew);
-                return RedirectToAction("Index","Home");
+                return RedirectToAction("UserProfile", "Profile");
 			}
             ModelState.AddModelError("", "Sistemde bir hata meydana geldi.");
             return RedirectToAction("Index");
