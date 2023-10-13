@@ -7,9 +7,9 @@ namespace ECommerce.PresentationLayer.ViewComponents.AdminLayout
 {
     public class NavHeader : ViewComponent
     {
-        private readonly ApiService _apiService;
+        private readonly IApiService _apiService;
 
-        public NavHeader(ApiService apiService)
+        public NavHeader(IApiService apiService)
         {
             _apiService = apiService;
         }

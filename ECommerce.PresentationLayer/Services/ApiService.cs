@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ECommerce.PresentationLayer.Services
 {
-    public class ApiService
+    public class ApiService : IApiService
     {
         private readonly IHttpClientFactory _httpClientFactory;
 

@@ -19,11 +19,11 @@ namespace ECommerce.PresentationLayer.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly IMapper _mapper;
-        private readonly ApiService _apiService;
+        private readonly IApiService _apiService;
         private readonly RabbitMqPublisher _rabbitMqPublisher;
 
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IMapper mapper, ApiService apiService, RabbitMqPublisher rabbitMqPublisher)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IMapper mapper, IApiService apiService, RabbitMqPublisher rabbitMqPublisher)
         {
             _userManager = userManager;
             _signInManager = signInManager;

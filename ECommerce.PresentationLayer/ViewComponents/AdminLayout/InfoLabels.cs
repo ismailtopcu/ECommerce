@@ -10,9 +10,9 @@ namespace ECommerce.PresentationLayer.ViewComponents.AdminLayout
 {
     public class InfoLabels : ViewComponent
     {
-        private readonly ApiService _apiService;
+        private readonly IApiService _apiService;
 
-        public InfoLabels(ApiService apiService)
+        public InfoLabels(IApiService apiService)
         {
             _apiService = apiService;
         }

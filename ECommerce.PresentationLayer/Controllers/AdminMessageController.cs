@@ -8,10 +8,10 @@ namespace ECommerce.PresentationLayer.Controllers
     [Authorize(Policy = "AdminPolicy")]
     public class AdminMessageController : Controller
     {
-        private readonly ApiService _apiService;
+        private readonly IApiService _apiService;
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public AdminMessageController(ApiService apiService, IHttpClientFactory httpClientFactory)
+        public AdminMessageController(IApiService apiService, IHttpClientFactory httpClientFactory)
         {
             _apiService = apiService;
             _httpClientFactory = httpClientFactory;

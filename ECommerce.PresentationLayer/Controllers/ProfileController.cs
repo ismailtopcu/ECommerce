@@ -18,8 +18,8 @@ public class ProfileController : Controller
 {
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IServiceProvider _serviceProvider;
-    private readonly ApiService _apiService;
-    public ProfileController(IHttpClientFactory httpClientFactory, IServiceProvider serviceProvider, ApiService apiService)
+    private readonly IApiService _apiService;
+    public ProfileController(IHttpClientFactory httpClientFactory, IServiceProvider serviceProvider, IApiService apiService)
     {
         _httpClientFactory = httpClientFactory;
         _serviceProvider = serviceProvider;

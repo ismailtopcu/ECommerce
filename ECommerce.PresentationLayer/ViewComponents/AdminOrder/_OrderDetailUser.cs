@@ -7,9 +7,9 @@ namespace ECommerce.PresentationLayer.ViewComponents.AdminOrder
 {
     public class _OrderDetailUser : ViewComponent
     {
-        private readonly ApiService _apiService;
+        private readonly IApiService _apiService;
 
-        public _OrderDetailUser(ApiService apiService)
+        public _OrderDetailUser(IApiService apiService)
         {
             _apiService = apiService;
         }

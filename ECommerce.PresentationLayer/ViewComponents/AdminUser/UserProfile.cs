@@ -9,8 +9,8 @@ namespace ECommerce.PresentationLayer.ViewComponents.AdminUser
     public class UserProfile : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ApiService _apiService;
-        public UserProfile(IHttpClientFactory httpClientFactory, ApiService apiService)
+        private readonly IApiService _apiService;
+        public UserProfile(IHttpClientFactory httpClientFactory, IApiService apiService)
         {
             _httpClientFactory = httpClientFactory;
             _apiService = apiService;
