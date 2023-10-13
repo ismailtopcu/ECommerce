@@ -32,6 +32,7 @@ namespace ECommerce.PresentationLayer.ViewComponents
                     };
                     viewModels.Add(viewModel);
 				};
+                ViewBag.id = id;
                 return View(viewModels);
                 
 			}
