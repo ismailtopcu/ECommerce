@@ -1,0 +1,52 @@
+﻿@model ECommerce.DtoLayer.Dtos.AdminPanel.AdminSummaryDTO
+
+<div class="row">
+    <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-1">
+            <div class="card-body">
+                <h4 class="card-title text-white">Toplam Ürün Sayısı</h4>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@Model.ProductCount</h2>
+                    <p class="text-white mb-0"><a class="text-white mb-0" href="~/adminpanel/productlist/">Ürün Listesi</a></p>
+                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-shopping-cart"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-2">
+            <div class="card-body">
+                <h4 class="card-title text-white">Çalışanlarımız</h4>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@Model.EmployeeCount</h2>
+                    <p class="text-white mb-0"><a class ="text-white mb-0" href="~/adminpanel/employeelist/">Çalışan Listesi</a></p>
+                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-money"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-3">
+            <div class="card-body">
+                <h4 class="card-title text-white">Kullanıcı Sayısı</h4>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@Model.UserCount</h2>
+                    <p class="text-white mb-0"><a class="text-white mb-0" href="~/adminpanel/userlist/">Kullanıcı Listesi</a></p>
+                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-4">
+            <div class="card-body">
+                <h4 class="card-title text-white">Kategori Sayısı</h4>
+                <div class="d-inline-block">
+                    <h2 class="text-white">@Model.CategoryCount</h2>
+                    <p class="text-white mb-0"><a class="text-white mb-0" href="~/adminpanel/categorylist/">Kategori Listesi</a></p>
+                </div>
+                <span class="float-right display-5 opacity-5"><i class="fa fa-heart"></i></span>
+            </div>
+        </div>
+    </div>
+</div>

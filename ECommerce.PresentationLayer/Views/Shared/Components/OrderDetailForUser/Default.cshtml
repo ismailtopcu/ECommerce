@@ -1,0 +1,20 @@
+﻿@model List<OrderDetailViewModel>
+
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Ürün Adı</th>
+        <th>Adet</th>
+        <th>Fiyat</th>
+        <th>Fotoğraf</th>
+    </tr>
+    @foreach (var urun in Model)
+    {
+        <tr>
+            <td>@urun.Product.Name</td>
+            <td>@urun.Quantity</td>
+            <td>@urun.UnitPrice.ToString("C")</td>
+            <td><img style="height:50px" src="@urun.Product.Image" alt="@urun.Product.Name"></td>
+        </tr>
+    }
+</table>

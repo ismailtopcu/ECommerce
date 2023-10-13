@@ -1,5 +1,9 @@
 ﻿using ECommerce.DataAccessLayer.Concrete;
 using ECommerce.DtoLayer.Dtos.AccountDto;
+using ECommerce.DtoLayer.Dtos.Order;
+using ECommerce.EntityLayer.Concrete;
+using ECommerce.PresentationLayer.Models;
+using ECommerce.PresentationLayer.Services;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,18 +15,20 @@ using System.Text;
 namespace ECommerce.PresentationLayer.Controllers;
 
 public class ProfileController : Controller
-    {
-        private readonly IHttpClientFactory _httpClientFactory;
-        private readonly IServiceProvider _serviceProvider;
-    public ProfileController(IHttpClientFactory httpClientFactory, IServiceProvider serviceProvider)
+{
+    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IServiceProvider _serviceProvider;
+    private readonly ApiService _apiService;
+    public ProfileController(IHttpClientFactory httpClientFactory, IServiceProvider serviceProvider, ApiService apiService)
     {
         _httpClientFactory = httpClientFactory;
         _serviceProvider = serviceProvider;
+        _apiService = apiService;
     }
     public async Task<IActionResult> UserProfile()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7175/api/User/GetOneUserById/" + User.Identity.GetUserId()); // Update the API endpoint accordingly
+            var responseMessage = await client.GetAsync("https://localhost:7175/api/User/GetOneUserById/" + User.Identity.GetUserId()); 
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -98,6 +104,16 @@ public class ProfileController : Controller
         return View(userDto);
     }
 
+    public async Task<IActionResult> UserOrderDetails(int id)
+    {
+        var values = await _apiService.GetTableData<ResultOrderDto>("https://localhost:7175/api/Order/");
+        var order = values.Where(x => x.Id == id).FirstOrDefault();
+
+        var user = await _apiService.GetData<ResultUserDto>("https://localhost:7175/api/User/GetOneUserById/" + order.UserId);
+        ViewBag.User = user.Name + " " + user.Surname;
+        ViewBag.Email = user.Email;
+        return View(order);
+    }
 
 }
 
