@@ -46,8 +46,6 @@ namespace ECommerce.WebApi.Controllers
 			var value = await _userManager.FindByNameAsync(userName);
 			if (value == null) { return BadRequest("Kullanıcı bulunamadı."); }
 
-			var isAdmin = await _userManager.IsInRoleAsync(value, "Admin");
-			if (isAdmin == true) { return BadRequest("Admin bilgisi çekilemez."); }
 			return Ok(value);
 		}
         [HttpGet("[action]/{id}")]
