@@ -34,6 +34,9 @@ namespace ECommerce.BusinessLayer.DependencyResolves.Autofac
             builder.RegisterType<EfMessageDal>().As<IMessageDal>().InstancePerLifetimeScope();
             builder.RegisterType<MessageManager>().As<IMessageService>().InstancePerLifetimeScope();
 
+            builder.RegisterType<EfCommentDal>().As<ICommentDal>().InstancePerLifetimeScope();
+            builder.RegisterType<CommentManager>().As<ICommentService>().InstancePerLifetimeScope();
+
 
 
 

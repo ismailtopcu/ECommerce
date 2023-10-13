@@ -56,9 +56,13 @@
 							</button>
 						</div>
 					</div>
+
+
 				</div>
 			</div>
-		</div>		
+		</div>
+		@await Component.InvokeAsync("CommentsForProducts", new {id = Model.Id})
+
 	</div>	
 </section>
 

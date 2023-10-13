@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ECommerce.DtoLayer.Dtos.AccountDto;
 using ECommerce.DtoLayer.Dtos.Category;
+using ECommerce.DtoLayer.Dtos.Comment;
 using ECommerce.DtoLayer.Dtos.Employee;
 using ECommerce.DtoLayer.Dtos.Order;
 using ECommerce.DtoLayer.Dtos.OrderDetail;
@@ -36,6 +37,9 @@ namespace ECommerce.PresentationLayer.Mapping
 			CreateMap<CreateNewUserDto, AppUser>().ReverseMap();
 			CreateMap<LoginUserDto, AppUser>().ReverseMap();
 			CreateMap<ResultUserDto, AppUser>().ReverseMap();
+
+			CreateMap<CreateCommentDto, Comment>().ReverseMap();
+			CreateMap<ResultCommentDto, Comment>().ReverseMap();
 
 
 		}
