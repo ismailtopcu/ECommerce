@@ -9,9 +9,9 @@ namespace ECommerce.PresentationLayer.ViewComponents
 {
     public class OrderDetailForUser : ViewComponent
     {
-        private readonly ApiService _apiService;
+        private readonly IApiService _apiService;
 
-        public OrderDetailForUser(ApiService apiService)
+        public OrderDetailForUser(IApiService apiService)
         {
             _apiService = apiService;
         }

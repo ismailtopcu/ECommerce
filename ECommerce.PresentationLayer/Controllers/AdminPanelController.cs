@@ -13,9 +13,9 @@ namespace ECommerce.PresentationLayer.Controllers
     [Authorize(Policy = "AdminPolicy")]
     public class AdminPanelController : Controller
 	{
-		private readonly ApiService _apiService;
+		private readonly IApiService _apiService;
 
-        public AdminPanelController(ApiService apiService)
+        public AdminPanelController(IApiService apiService)
         {
             _apiService = apiService;
         }

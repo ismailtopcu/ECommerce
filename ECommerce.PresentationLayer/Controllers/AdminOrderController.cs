@@ -9,9 +9,9 @@ namespace ECommerce.PresentationLayer.Controllers
 {
     public class AdminOrderController : Controller
     {
-        private readonly ApiService _apiService;
+        private readonly IApiService _apiService;
 
-        public AdminOrderController(ApiService apiService)
+        public AdminOrderController(IApiService apiService)
         {
             _apiService = apiService;
         }

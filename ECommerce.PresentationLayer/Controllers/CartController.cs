@@ -6,11 +6,6 @@ using Microsoft.AspNet.Identity;
 using ECommerce.PresentationLayer.Services;
 using ECommerce.DtoLayer.Dtos.Order;
 using ECommerce.DtoLayer.Dtos.OrderDetail;
-using ECommerce.DtoLayer.Dtos.Product;
-using Newtonsoft.Json;
-using System.Net.Http;
-using System.Text;
-using Humanizer;
 using AutoMapper;
 
 namespace ECommerce.PresentationLayer.Controllers
@@ -18,10 +13,10 @@ namespace ECommerce.PresentationLayer.Controllers
 	public class CartController : Controller
 	{
 		private readonly IBasketService _basketService;
-		private readonly ApiService _apiService;
+		private readonly IApiService _apiService;
 		private readonly IMapper _mapper;
 
-        public CartController(IBasketService basketService, ApiService apiService, IMapper mapper)
+        public CartController(IBasketService basketService, IApiService apiService, IMapper mapper)
         {
             _basketService = basketService;
             _apiService = apiService;
