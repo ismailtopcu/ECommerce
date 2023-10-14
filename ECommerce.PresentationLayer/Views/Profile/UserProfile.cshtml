@@ -34,8 +34,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                                         @if (Model.ImageUrl == null)
                                         {
                                             <img class="agile-img img-responsive" src="~/images/defaultuser.png" alt="IMG">
+                                        }else{
+                                            <img class="agile-img img-responsive" src="@Model.ImageUrl" alt="IMG">
                                         }
-                                        <img class="agile-img img-responsive" src="@Model.ImageUrl" alt="IMG">
                                         <div class="info">
                                             <label class="mt-2">Adınız:</label>
                                             <p>@Model.Name @Model.Surname</p>

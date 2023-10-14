@@ -1,4 +1,5 @@
-﻿using ECommerce.DataAccessLayer.Concrete;
+﻿using AutoMapper;
+using ECommerce.DataAccessLayer.Concrete;
 using ECommerce.DtoLayer.Dtos.AccountDto;
 using ECommerce.DtoLayer.Dtos.Order;
 using ECommerce.EntityLayer.Concrete;
@@ -17,13 +18,13 @@ namespace ECommerce.PresentationLayer.Controllers;
 public class ProfileController : Controller
 {
     private readonly IHttpClientFactory _httpClientFactory;
-    private readonly IServiceProvider _serviceProvider;
     private readonly IApiService _apiService;
-    public ProfileController(IHttpClientFactory httpClientFactory, IServiceProvider serviceProvider, IApiService apiService)
+    private readonly IMapper _mapper;
+    public ProfileController(IHttpClientFactory httpClientFactory, IApiService apiService, IMapper mapper)
     {
         _httpClientFactory = httpClientFactory;
-        _serviceProvider = serviceProvider;
         _apiService = apiService;
+        _mapper = mapper;
     }
     public async Task<IActionResult> UserProfile()
         {
@@ -55,9 +56,7 @@ public class ProfileController : Controller
     [HttpPost]
     public async Task<IActionResult> EditUser(UpdateUserDto userDto, IFormFile ImageFile)
     {
-        using var dbContext = _serviceProvider.GetRequiredService<Context>();
-        var user = await dbContext.Users.FirstOrDefaultAsync(u => u.UserName == userDto.UserName);
-
+        var user = await _apiService.GetData<AppUser>("https://localhost:7175/api/User/GetOneUser/" + User.Identity.Name); 
         if (user != null)
         {
             var oldImagePath = user.ImageUrl;
@@ -84,21 +83,26 @@ public class ProfileController : Controller
                     }
                 }
 
-                user.Name = userDto.Name;
-                user.Surname = userDto.Surname;
-                user.PhoneNumber = userDto.PhoneNumber;
-                user.City = userDto.City;
-                user.ImageUrl = imageUrl;
-                dbContext.SaveChanges();
-
+                var client1 = _httpClientFactory.CreateClient();
+                var jsonData1 = JsonConvert.SerializeObject(userDto);
+                StringContent stringContent1 = new StringContent(jsonData1, Encoding.UTF8, "application/json");
+                var responseMessage1 = await client1.PutAsync("https://localhost:7175/api/Admin/UpdateAdmin", stringContent1);
+                if (responseMessage1.IsSuccessStatusCode) 
+                {
+                    return RedirectToAction("UserProfile");
+                }
+                return View();
+            }
+            userDto.ImageUrl = oldImagePath;
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(userDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PutAsync("https://localhost:7175/api/Admin/UpdateAdmin", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
                 return RedirectToAction("UserProfile");
             }
-            user.Name = userDto.Name;
-            user.Surname = userDto.Surname;
-            user.PhoneNumber = userDto.PhoneNumber;
-            user.City = userDto.City;
-            dbContext.SaveChanges();
-            return RedirectToAction("UserProfile");
+            return View();
         }
 
         return View(userDto);
