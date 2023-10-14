@@ -59,6 +59,7 @@
     -ms-transition: 0.08s ease-in;
     -moz-transition: 0.08s ease-in;
     -webkit-transition: 0.08s ease-in;
+    
 
 }
 
@@ -80,4 +81,24 @@
 
 .fill:hover:before {
     top: 0;
+}
+@media (max-width: 576px) {
+    .fill {
+        position: page;
+        height: 25px; 
+        width: 30px; 
+        font-weight: 100;
+        font-size: 12px; 
+        color: #383736;
+        border: 2px #383736 solid;
+        border-radius: 4px;
+        text-transform: uppercase;
+        outline: 0;
+        overflow: hidden;
+        background: none;
+        cursor: pointer;
+        transition: 0.08s ease-in;
+        margin-top:20px;
+    }
+
 }
