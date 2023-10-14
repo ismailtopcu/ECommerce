@@ -204,8 +204,13 @@ namespace ECommerce.PresentationLayer.Controllers
 		}
 
 
+        public async Task<IActionResult> LogoutSec()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
 
-		[HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
