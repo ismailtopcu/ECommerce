@@ -1,7 +1,7 @@
 ﻿@using ECommerce.DtoLayer.Dtos.Order;
 @using X.PagedList;
 @using X.PagedList.Mvc.Common;
-@model IPagedList<ResultOrderDto>
+@model IPagedList<OrderWithUserViewModel>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -16,6 +16,8 @@
 			<tr>
 				<th>#</th>
 				<th>Sipariş Tarihi</th>
+				<th>Ad Soyad</th>
+				<th>Toplam Fiyat</th>
 				<th>Detay</th>
 			</tr>
 		</thead>
@@ -25,6 +27,8 @@
 				<tr>
 					<th>@item.Id</th>
 					<td>@item.OrderDate </td>
+					<td>@item.User.Name @item.User.Surname </td>
+					<td>$@item.TotalAmount </td>
 					<td><a href="/adminpanel/orders/orderdetail/@item.Id" class="btn btn-warning">Detay</a></td>
 				</tr>
 			}

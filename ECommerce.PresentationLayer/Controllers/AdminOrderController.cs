@@ -1,5 +1,7 @@
 ﻿using ECommerce.DtoLayer.Dtos.AccountDto;
 using ECommerce.DtoLayer.Dtos.Order;
+using ECommerce.EntityLayer.Concrete;
+using ECommerce.PresentationLayer.Models;
 using ECommerce.PresentationLayer.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -20,7 +22,24 @@ namespace ECommerce.PresentationLayer.Controllers
         public async Task<IActionResult> Index(int page = 1)
         {
             var values = await _apiService.GetTableData<ResultOrderDto>("https://localhost:7175/api/Order/");
-            return View(values.ToPagedList(page, 10));
+
+            List<OrderWithUserViewModel> list = new List<OrderWithUserViewModel>();
+
+            foreach (var item in values) 
+            {
+                OrderWithUserViewModel order = new()
+                {
+                    Id = item.Id,
+                    OrderDate = item.OrderDate,
+                    UserId = item.UserId,
+                    TotalAmount = item.TotalAmount,
+                    User = await _apiService.GetData<AppUser>("https://localhost:7175/api/User/GetOneUserById/"+ item.UserId)
+                };
+                list.Add(order);
+            }
+
+
+            return View(list.ToPagedList(page, 10));
         }
 
         [Route("/adminpanel/orders/orderdetail/{id}")]

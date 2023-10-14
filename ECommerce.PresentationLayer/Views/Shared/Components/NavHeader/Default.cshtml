@@ -1,5 +1,5 @@
 ﻿@using ECommerce.DtoLayer.Dtos.Messages;
-@model List<ResultMessageDto>
+@model List<NewMessageNotificationViewModel>
 
 @{
     string imageUrl;
@@ -46,11 +46,12 @@
                         </div>
                         <div class="dropdown-content-body">
                             <ul>
+                                <hr />
                                 @foreach (var item in Model)
                                 {
                                     <li class="notification-unread">
                                         <a href="/adminpanel/messagedetail/@item.MessageId">
-                                                <img class="float-left mr-3 avatar-img" src="adminweb/images/media/newMessage.png" alt="">
+                                                <img class="float-left mr-3 avatar-img" src="@item.SenderUser.ImageUrl" alt="">
                                                 <div class="notification-content">
                                                     <div class="notification-heading">@item.SenderUserName</div>
                                                     <div class="notification-timestamp">@item.Created.ToString("dd/MM/yy")</div>
@@ -58,6 +59,7 @@
                                                 </div>
                                         </a>
                                     </li>
+                                    <hr />
                                 }
                             </ul>
                         </div>
@@ -77,9 +79,6 @@
                                 <li>
                                     <a href="/adminpanel/messages/inbox"><i class="icon-envelope-open"></i> <span>Gelen Kutusu</span> <div class="badge gradient-3 badge-pill badge-primary">@ViewBag.InboxCount</div></a>
                                 </li>
-
-                                <hr class="my-2">
-                                <li><a href="page-login.html"><i class="icon-key"></i> <span>Çıkış Yap</span></a></li>
                             </ul>
                         </div>
                     </div>

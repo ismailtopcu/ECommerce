@@ -28,7 +28,7 @@ namespace ECommerce.PresentationLayer.Controllers
         }
 
         [Route("adminpanel/messages/sendbox")]
-        public async Task<IActionResult> SendBox() 
+        public async Task<IActionResult> SendBox()
         {
             string url = "https://localhost:7175/api/AdminMessage/GetAllMessagesForSender?userName=" + User.Identity.Name.ToString();
             var value = await _apiService.GetTableData<ResultMessageDto>(url);
@@ -51,22 +51,20 @@ namespace ECommerce.PresentationLayer.Controllers
         }
         [Route("adminpanel/messages/sendmessage/{userName}")]
         [HttpPost]
-        public async Task<IActionResult> NewMessage(CreateMessageDto createMessage) 
+        public async Task<IActionResult> NewMessage(CreateMessageDto createMessage)
         {
-            if (ModelState.IsValid)
-            {
-                string url = "https://localhost:7175/api/AdminMessage";
-                createMessage.SenderUserName = User.Identity.Name;
-                createMessage.Created = DateTime.Now;
-                await _apiService.AddData(url, createMessage);
-                return RedirectToAction("SendBox");
-            }
-            return View(createMessage);
+
+            string url = "https://localhost:7175/api/AdminMessage";
+            createMessage.SenderUserName = User.Identity.Name;
+            createMessage.Created = DateTime.Now;
+            await _apiService.AddData(url, createMessage);
+            return RedirectToAction("SendBox");
+
 
         }
 
         [Route("adminpanel/messages/detail/{id}")]
-        public async Task<IActionResult> MessageDetailForReceiver(int id) 
+        public async Task<IActionResult> MessageDetailForReceiver(int id)
         {
             string url = "https://localhost:7175/api/AdminMessage/GetMessageByIdReceiver/" + id;
             var value = await _apiService.GetData<ResultMessageDto>(url);
@@ -97,7 +95,7 @@ namespace ECommerce.PresentationLayer.Controllers
                 }
             }
 
-            if (value.ReceiverUserName == User.Identity.Name) 
+            if (value.ReceiverUserName == User.Identity.Name)
             {
                 string receiverUrl = "https://localhost:7175/api/AdminMessage/DeleteMessage/" + id + ",true";
                 var client = _httpClientFactory.CreateClient();
@@ -120,9 +118,9 @@ namespace ECommerce.PresentationLayer.Controllers
         }
         [Route("adminpanel/messages/sendemail")]
         [HttpPost]
-        public async Task<IActionResult> SendMail(CreateMailDto createMailDto) 
+        public async Task<IActionResult> SendMail(CreateMailDto createMailDto)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 string url = "https://localhost:7175/api/AdminMessage/SendEmail";
                 await _apiService.AddData(url, createMailDto);
