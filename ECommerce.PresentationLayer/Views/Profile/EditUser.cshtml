@@ -8,21 +8,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Velvety Sign In Form A Responsive Widget Template  :: w3layouts</title>
+    <title>ModaMania Profil Düzenle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Velvety Sign In Form Responsive Widget,Login form widgets, Sign up Web forms , Login signup Responsive web form,Flat Pricing table,Flat Drop downs,Registration Forms,News letter Forms,Elements" />
-    <link rel="stylesheet" href="~/velvety/web/css/flexslider.css" type="text/css" media="screen" /> <!-- Flexslider-CSS -->
-    <link href="/velvety/web/css/font-awesome.css" rel="stylesheet"><!-- Font-awesome-CSS -->
-    <link href="~/velvety/web/css/style.css" rel='stylesheet' type='text/css' /><!-- Stylesheet-CSS -->
+    <link rel="stylesheet" href="~/velvety/web/css/flexslider.css" type="text/css" media="screen" />
+    <link href="/velvety/web/css/font-awesome.css" rel="stylesheet">
+    <link href="~/velvety/web/css/style.css" rel='stylesheet' type='text/css' />
     <link href="//fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700" rel="stylesheet">
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script type="application/x-javascript">
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
 </head>
 <body class="profile_background">
-    <h1>Profil Bilgilerim</h1>
+    <h1 class="text-center mt-3">PROFİL DÜZENLE</h1>
     <div class="main-agile">
-        <div class="alert-close"> </div>
         <div class="content-wthree">
             <div>
                 <section class="slider">
@@ -31,50 +36,47 @@
                             <li>
                                 <div>
                                     <div class="about-midd-main">
-
-                                        <div class="info col-md-6">
+                                        <div class="info col-md-6 mx-auto">
                                             <form asp-action="EditUser" method="post" enctype="multipart/form-data">
                                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
                                                 <div class="form-group">
-                                                    <label asp-for="UserName">Kullanıcı Adı <span class="text-danger">*</span></label>
-                                                    <input placeholder="@Model.UserName" asp-for="UserName" class="form-control" readonly />
+                                                    <label style="color:azure" asp-for="UserName">Kullanıcı Adı <span class="text-danger">*</span></label>
+                                                    <input type="text" style="background: #fff; border: none; border-bottom: 1px solid #000; color: #000; outline: none;" placeholder="@Model.UserName" asp-for="UserName" class="form-control" readonly />
                                                     <input asp-for="Id" type="hidden" />
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label asp-for="Name">İsim <span class="text-danger">*</span></label>
-                                                    <input asp-for="Name" class="form-control" placeholder="İsim giriniz.." required/>
+                                                    <label style="color:azure" asp-for="Name">İsim <span class="text-danger">*</span></label>
+                                                    <input style="background: #fff; border: none; border-bottom: 1px solid #000; color: #000; outline: none;" asp-for="Name" class="form-control" placeholder="İsim giriniz.." required />
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label asp-for="Surname">Soyisim <span class="text-danger">*</span></label>
-                                                    <input asp-for="Surname" class="form-control" placeholder="Soyisim giriniz.." required />
+                                                    <label style="color:azure" asp-for="Surname">Soyisim <span class="text-danger">*</span></label>
+                                                    <input style="background: #fff; border: none; border-bottom: 1px solid #000; color: #000; outline: none;" asp-for="Surname" class="form-control" placeholder="Soyisim giriniz.." required />
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label asp-for="City">Şehir</label>
-                                                    <input asp-for="City" class="form-control" placeholder="Şehir giriniz.." required />
+                                                    <label style="color:azure" asp-for="City">Şehir</label>
+                                                    <input style="background: #fff; border: none; border-bottom: 1px solid #000; color: #000; outline: none;" asp-for="City" class="form-control" placeholder="Şehir giriniz.." required />
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label asp-for="PhoneNumber">Telefon</label>
-                                                    <input asp-for="PhoneNumber" class="form-control" placeholder="+90" required />
+                                                    <label style="color:azure" asp-for="PhoneNumber">Telefon</label>
+                                                    <input style="background: #fff; border: none; border-bottom: 1px solid #000; color: #000; outline: none;" style="ba" asp-for="PhoneNumber" class="form-control" placeholder="+90" required />
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label for="ImageFile">Resim Yükle</label>
+                                                    <label style="color:azure" for="ImageFile">Resim Yükle</label>
                                                     <input type="file" name="ImageFile" id="ImageFile" class="form-control">
                                                 </div>
 
-                                                <div class="form-group">
+                                                <div class="form-group text-center">
                                                     <button type="submit" class="btn btn-primary">Kaydet</button>
                                                 </div>
                                             </form>
-
                                         </div>
                                     </div>
-
                                 </div>
                             </li>
                         </ul>
@@ -82,9 +84,7 @@
                     <div class="clear"> </div>
                 </section>
             </div>
-
             <div class="clear"> </div>
-
         </div>
     </div>
     <br />
@@ -99,7 +99,6 @@
             });
         });
     </script>
-    <!-- FlexSlider -->
     <script defer src="~/velvety/web/js/jquery.flexslider.js"></script>
     <script type="text/javascript">
         $(function () {
@@ -113,38 +112,8 @@
                 }
             });
         });
-    </script>
-    <!-- FlexSlider -->
+         
 
+    </script>
 </body>
 </html>
-<script>
-    document.getElementById("logout").addEventListener("click", function () {
-        fetch('/Account/Logout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({})
-        })
-            .then(function (response) {
-                if (response.status === 200) {
-                    window.location.href = "/Account/Login";
-                } else {
-                    console.error('Çıkış yapma hatası');
-                }
-            })
-            .catch(function (error) {
-                console.error('Çıkış yapma hatası', error);
-            });
-    });
-</script>
-<style>
-    h1 {
-        margin-top: 10px;
-    }
-
-    .main-agile {
-        margin-top: 20px;
-    }
-</style>
