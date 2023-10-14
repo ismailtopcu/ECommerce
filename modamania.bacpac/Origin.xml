@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DacOrigin xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <PackageProperties>
+    <Version>3.1.0.0</Version>
+    <ContainsExportedData>true</ContainsExportedData>
+    <StreamVersions>
+      <Version StreamName="Data">2.0.0.0</Version>
+      <Version StreamName="DeploymentContributors">1.0.0.0</Version>
+    </StreamVersions>
+  </PackageProperties>
+  <Operation>
+    <Identity>3fac332f-475a-44e6-a5b1-40ed1b5bc7a4</Identity>
+    <Start>2023-10-14T00:40:25.1824354+03:00</Start>
+    <End>0001-01-01T00:00:00.0000000</End>
+    <ProductName>Microsoft.SqlServer.Dac, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</ProductName>
+    <ProductVersion>15.0.5282.3</ProductVersion>
+    <ProductSchema>http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02</ProductSchema>
+  </Operation>
+  <Server>
+    <ServerVersion>Microsoft SQL Azure (RTM) - 12.0.2000.8 
+	Sep 18 2023 12:22:37 
+	Copyright (C) 2022 Microsoft Corporation
+</ServerVersion>
+    <ObjectCounts>
+      <DatabaseOptions>1</DatabaseOptions>
+      <DefaultConstraint>1</DefaultConstraint>
+      <ForeignKeyConstraint>11</ForeignKeyConstraint>
+      <Index>12</Index>
+      <PrimaryKeyConstraint>16</PrimaryKeyConstraint>
+      <SimpleColumn>90</SimpleColumn>
+      <Table>16</Table>
+    </ObjectCounts>
+  </Server>
+  <ExportStatistics>
+    <SourceDatabaseSize>12064</SourceDatabaseSize>
+    <TableRowCountTotalTag>186</TableRowCountTotalTag>
+  </ExportStatistics>
+  <Checksums>
+    <Checksum Uri="/model.xml">A2C3D164C3C4CF59B1F8F81AB396B99227C84ABCA4003D2F88D7374A22F6E686</Checksum>
+  </Checksums>
+  <ModelSchemaVersion>2.5</ModelSchemaVersion>
+</DacOrigin>
