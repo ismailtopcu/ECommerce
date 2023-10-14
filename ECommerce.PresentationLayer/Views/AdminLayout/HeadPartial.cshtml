@@ -4,7 +4,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>ModaMania Admin Paneli</title>
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="~/adminweb/images/favicon.png">
+    <link id="favicon" rel="icon" sizes="48x48" type="image/png" href="~/cozastore-master/images/icons/micon.png">
+    <script>
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const faviconElement = document.getElementById('favicon');
+
+        if (prefersDarkMode) {
+            faviconElement.href = '/cozastore-master/images/icons/white-micon.png';
+        } else {
+            faviconElement.href = '/cozastore-master/images/icons/micon.png';
+        }
+    </script>
     <!-- Custom Stylesheet -->
     <link href="~/adminweb/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">

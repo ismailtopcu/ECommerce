@@ -3,7 +3,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="~/cozastore-master/images/icons/favicon.png" />
+    <link id="favicon" rel="icon" sizes="48x48" type="image/png" href="~/cozastore-master/images/icons/micon.png">
+    <script>
+        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const faviconElement = document.getElementById('favicon');
+
+        if (prefersDarkMode) {
+            faviconElement.href = '/cozastore-master/images/icons/white-micon.png';
+        } else {
+            faviconElement.href = '/cozastore-master/images/icons/micon.png';
+        }
+    </script>
+    
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="~/cozastore-master/vendor/bootstrap/css/bootstrap.min.css">
     <!--===============================================================================================-->
