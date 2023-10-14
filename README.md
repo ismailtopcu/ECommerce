@@ -29,4 +29,7 @@ sipariş oluşturma işlemlerini yapabilmektedir.
 |  ![Resim 13](https://raw.githubusercontent.com/ismailtopcu/ECommerce/master/ECommerce.PresentationLayer/wwwroot/modamania/13.png)  |  ![Resim 14](https://raw.githubusercontent.com/ismailtopcu/ECommerce/master/ECommerce.PresentationLayer/wwwroot/modamania/14.png)  |  ![Resim 15](https://raw.githubusercontent.com/ismailtopcu/ECommerce/master/ECommerce.PresentationLayer/wwwroot/modamania/15.png)  |
 
 ## Proje Videosu
-[Youtube HD Video ](https://youtu.be/qcK-clizo_0 "Youtube HD Video ")
+[![YouTube Video](https://img.youtube.com/vi/qcK-clizo_0/0.jpg)](https://www.youtube.com/watch?v=qcK-clizo_0)
+
+
+
